@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Renave.Anfir.Models
 {
-    public class Estoque
+    public class TransferenciaEstoqueParaIteRetorno
     {
         public CancelamentoEstoque cancelamentoEstoque { get; set; }
         public string chassi { get; set; }
