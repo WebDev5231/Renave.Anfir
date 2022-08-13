@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
@@ -15,7 +16,6 @@ namespace Renave.Anfir.Controllers
     public class ClienteAutenticadoController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
-        private string baseCertPath = ConfigurationManager.AppSettings["CertUrl"];
 
         [HttpGet]
         public async Task<HttpResponseMessage> Get(int ID_Empresa)
@@ -31,7 +31,7 @@ namespace Renave.Anfir.Controllers
                     var certificadoFileName = "planalto_industria_2022.pfx";
                     var certificadoPassword = "123456789";
 
-                    var pathCert = @baseCertPath + certificadoFileName;
+                    var pathCert = HttpContext.Current.Server.MapPath("~/") + @"certificados\" +  certificadoFileName;
 
                     var certificate = new X509Certificate2(pathCert, certificadoPassword);
                     var handler = new HttpClientHandler();
