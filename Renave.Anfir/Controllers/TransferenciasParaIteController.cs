@@ -28,6 +28,9 @@ namespace Renave.Anfir.Controllers
             {
                 var url = basePath + "/api/ite/transferencias-para-ite";
 
+                if (solicitacao.ID_Empresa == null || solicitacao.ID_Empresa == string.Empty)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "ID_Empresa não cadastrada.");
+
                 var certificadoFileName = "planalto_industria_2022.pfx";
                 var certificadoPassword = "123456789";
 
