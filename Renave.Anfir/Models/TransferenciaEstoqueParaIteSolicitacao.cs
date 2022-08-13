@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Renave.Anfir.Models
 {
-    public class Solicitacao
+    public class TransferenciaEstoqueParaIteSolicitacao
     {
         public string chaveNotaFiscalRemessa { get; set; }
         public string codigoClienteMontadora { get; set; }

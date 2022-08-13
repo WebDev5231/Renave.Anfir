@@ -12,19 +12,16 @@ using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
 {
-    /// <summary>
-    /// Transferir estoque para ITE solicitante.
-    /// </summary>
-    public class TransferenciasParaIteController : ApiController
+    public class SaidasEstoqueController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody] TransferenciaEstoqueParaIteSolicitacao solicitacao)
+        public async Task<HttpResponseMessage> Post([FromBody] SaidaEstoqueSolicitacao solicitacao)
         {
             try
             {
-                var url = basePath + "/api/ite/transferencias-para-ite";
+                var url = basePath + "/api/ite/saidas-estoque";
 
                 using (var client = new HttpClient())
                 {
