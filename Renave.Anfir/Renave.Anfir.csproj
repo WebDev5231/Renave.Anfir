@@ -168,11 +168,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PdfAtpvController.cs" />
     <Compile Include="Controllers\SaidasEstoqueController.cs" />
+    <Compile Include="Controllers\TermoEntradaEstoqueController.cs" />
     <Compile Include="Controllers\TransferenciasParaIteController.cs" />
+    <Compile Include="Controllers\TransferenciasVindoDeIteParaIte.cs" />
+    <Compile Include="Controllers\VeiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AutorizacaoTransferencia.cs" />
+    <Compile Include="Models\CancelamentoEstoque.cs" />
+    <Compile Include="Models\CancelamentoSaidaEstoque.cs" />
     <Compile Include="Models\CancelamentosEntradaEstoqueIteSolicitacao.cs" />
     <Compile Include="Models\CancelamentosSaidaEstoqueIteSolicitacao.cs" />
     <Compile Include="Models\ClienteAutenticado.cs" />
@@ -182,14 +187,24 @@
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\EnderecoComprador.cs" />
     <Compile Include="Models\EnderecoDaIte.cs" />
+    <Compile Include="Models\EntradaEstoque.cs" />
     <Compile Include="Models\EntradaEstoqueSolicitacao.cs" />
     <Compile Include="Models\EnvioAutorizacao.cs" />
     <Compile Include="Models\EnvioCancelamento.cs" />
     <Compile Include="Models\Estoque.cs" />
     <Compile Include="Models\Municipio.cs" />
+    <Compile Include="Models\OrigemPorCancelamentoEstoque.cs" />
     <Compile Include="Models\PdfAtpv.cs" />
+    <Compile Include="Models\Restricao.cs" />
+    <Compile Include="Models\RestricoesVeiculo.cs" />
+    <Compile Include="Models\SaidaEstoque.cs" />
     <Compile Include="Models\SaidaEstoqueSolicitacao.cs" />
-    <Compile Include="Models\Solicitacao.cs" />
+    <Compile Include="Models\TransferenciaEstoqueParaIteRetorno.cs" />
+    <Compile Include="Models\TransferenciaVindoDeIteParaIteSolicitacao.cs" />
+    <Compile Include="Models\TransferenciaEstoqueParaIteSolicitacao.cs" />
+    <Compile Include="Models\TermoEntradaEstoque.cs" />
+    <Compile Include="Models\Veiculo.cs" />
+    <Compile Include="Models\Vendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
