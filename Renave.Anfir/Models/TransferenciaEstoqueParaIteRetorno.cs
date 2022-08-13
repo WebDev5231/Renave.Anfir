@@ -10,7 +10,7 @@ namespace Renave.Anfir.Models
         public CancelamentoEstoque cancelamentoEstoque { get; set; }
         public string chassi { get; set; }
         public string codigoSegurancaCrv { get; set; }
-        public DateTimeOffset dataHoraMedicaoHodometro { get; set; }
+        public DateTimeOffset? dataHoraMedicaoHodometro { get; set; }
         public EntradaEstoque entradaEstoque { get; set; }
         public string estado { get; set; }
         public bool estoqueEmIte { get; set; }

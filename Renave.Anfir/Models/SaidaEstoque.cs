@@ -13,10 +13,10 @@ namespace Renave.Anfir.Models
         public string chaveNotaFiscalServicoSaida { get; set; }
         public Comprador comprador { get; set; }
         public string cpfOperadorResponsavel { get; set; }
-        public DateTimeOffset dataHora { get; set; }
-        public DateTimeOffset dataHoraEnvioNotaFiscalRemessaSaida { get; set; }
-        public DateTimeOffset dataHoraEnvioNotaFiscalSaida { get; set; }
-        public DateTimeOffset dataHoraEnvioNotaFiscalServicoSaida { get; set; }
+        public DateTimeOffset? dataHora { get; set; }
+        public DateTimeOffset? dataHoraEnvioNotaFiscalRemessaSaida { get; set; }
+        public DateTimeOffset? dataHoraEnvioNotaFiscalSaida { get; set; }
+        public DateTimeOffset? dataHoraEnvioNotaFiscalServicoSaida { get; set; }
         public string motivo { get; set; }
         public long numeroTermoSaidaEstoque { get; set; }
     }
