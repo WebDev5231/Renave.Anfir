@@ -59,7 +59,7 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            return Request.CreateResponse((HttpStatusCode)422, retorno);
                         }
                         else
                         {
