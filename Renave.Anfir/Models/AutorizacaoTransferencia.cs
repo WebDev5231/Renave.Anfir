@@ -13,9 +13,9 @@ namespace Renave.Anfir.Models
         public string cpfOperadorResponsavelAutorizacao { get; set; }
         public string cpfOperadorResponsavelCancelamento { get; set; }
         public string cpfOperadorResponsavelTransferencia { get; set; }
-        public DateTime dataHoraAutorizacao { get; set; }
-        public DateTime dataHoraCancelamento { get; set; }
-        public DateTime dataHoraTransferencia { get; set; }
+        public DateTimeOffset? dataHoraAutorizacao { get; set; }
+        public DateTimeOffset? dataHoraCancelamento { get; set; }
+        public DateTimeOffset? dataHoraTransferencia { get; set; }
         public string estadoAutorizacaoTransferencia { get; set; }
         public bool estoqueOrigemDeVeiculoZeroKm { get; set; }
         public bool estoqueOrigemEmIte { get; set; }

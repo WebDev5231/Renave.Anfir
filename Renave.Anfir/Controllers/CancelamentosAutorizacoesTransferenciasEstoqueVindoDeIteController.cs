@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,10 @@ namespace Renave.Anfir.Controllers
             {
                 var url = basePath + "/api/ite/cancelamentos-autorizacoes-transferencias-estoque-vindo-de-ite";
 
-                using (var client = new HttpClient())
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(envioCancelamento.ID_Empresa);
+
+                using (var client = new HttpClient(handler))
                 {
                     var json = JsonConvert.SerializeObject(envioCancelamento);
 
@@ -49,14 +53,18 @@ namespace Renave.Anfir.Controllers
                     {
                         if (response.IsSuccessStatusCode)
                         {
+                            return Request.CreateResponse(HttpStatusCode.OK);
+                        }
+                        else if (response.StatusCode == (HttpStatusCode)422)
+                        {
                             var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<object>(jsonString.Result);
+                            var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            return Request.CreateResponse((HttpStatusCode)422, retorno);
                         }
                         else
                         {
-                            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
                         }
                     }
                 }

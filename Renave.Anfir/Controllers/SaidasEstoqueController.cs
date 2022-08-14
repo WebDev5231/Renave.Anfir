@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
 {
+    /// <summary>
+    /// Sair com veículo de estoque.
+    /// </summary>
     public class SaidasEstoqueController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
@@ -23,7 +27,10 @@ namespace Renave.Anfir.Controllers
             {
                 var url = basePath + "/api/ite/saidas-estoque";
 
-                using (var client = new HttpClient())
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(solicitacao.ID_Empresa);
+
+                using (var client = new HttpClient(handler))
                 {
                     var json = JsonConvert.SerializeObject(solicitacao);
 
@@ -51,9 +58,16 @@ namespace Renave.Anfir.Controllers
 
                             return Request.CreateResponse(retorno);
                         }
+                        else if (response.StatusCode == (HttpStatusCode)422)
+                        {
+                            var jsonString = response.Content.ReadAsStringAsync();
+                            var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+
+                            return Request.CreateResponse((HttpStatusCode)422, retorno);
+                        }
                         else
                         {
-                            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
                         }
                     }
                 }

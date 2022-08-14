@@ -11,6 +11,9 @@ using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
 {
+    /// <summary>
+    /// Consultar cliente-montadora por chassi.
+    /// </summary>
     public class ClientesMontadorasController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
@@ -32,9 +35,16 @@ namespace Renave.Anfir.Controllers
 
                         return Request.CreateResponse(retorno);
                     }
+                    else if (response.StatusCode == (HttpStatusCode)422)
+                    {
+                        var jsonString = response.Content.ReadAsStringAsync();
+                        var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+
+                        return Request.CreateResponse((HttpStatusCode)422, retorno);
+                    }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.BadRequest);
+                        return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
                     }
                 }
             }

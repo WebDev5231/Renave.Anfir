@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -6,13 +7,14 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
 {
+    /// <summary>
+    /// Consultar os dados do cliente autenticado.
+    /// </summary>
     public class ClienteAutenticadoController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
@@ -28,14 +30,8 @@ namespace Renave.Anfir.Controllers
                 {
                     var url = basePath + "/api/ite/cliente-autenticado";
 
-                    var certificadoFileName = "planalto_industria_2022.pfx";
-                    var certificadoPassword = "123456789";
-
-                    var pathCert = HttpContext.Current.Server.MapPath("~/") + @"certificados\" +  certificadoFileName;
-
-                    var certificate = new X509Certificate2(pathCert, certificadoPassword);
-                    var handler = new HttpClientHandler();
-                    handler.ClientCertificates.Add(certificate);
+                    var certificadoBusiness = new CertificadoBusiness();
+                    var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
                     using (var client = new HttpClient(handler))
                     {
@@ -50,7 +46,7 @@ namespace Renave.Anfir.Controllers
                         }
                         else
                         {
-                            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
                         }
                     }
                 }

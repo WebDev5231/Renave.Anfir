@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
@@ -28,17 +27,11 @@ namespace Renave.Anfir.Controllers
             {
                 var url = basePath + "/api/ite/transferencias-para-ite";
 
-                if (solicitacao.ID_Empresa == null || solicitacao.ID_Empresa == string.Empty)
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "ID_Empresa não cadastrada.");
+                if (solicitacao.ID_Empresa == 0)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "ID_Empresa não informada.");
 
-                var certificadoFileName = "planalto_industria_2022.pfx";
-                var certificadoPassword = "123456789";
-
-                var pathCert = HttpContext.Current.Server.MapPath("~/") + @"certificados\" + certificadoFileName;
-
-                var certificate = new X509Certificate2(pathCert, certificadoPassword);
-                var handler = new HttpClientHandler();
-                handler.ClientCertificates.Add(certificate);
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(solicitacao.ID_Empresa);
 
                 using (var client = new HttpClient(handler))
                 {
@@ -64,7 +57,7 @@ namespace Renave.Anfir.Controllers
                         if (response.IsSuccessStatusCode)
                         {
                             var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<TransferenciaEstoqueParaIteRetorno>(jsonString.Result);
+                            var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
 
                             return Request.CreateResponse(retorno);
                         }
@@ -77,7 +70,7 @@ namespace Renave.Anfir.Controllers
                         }
                         else
                         {
-                            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
                         }
                     }
                 }

@@ -7,6 +7,7 @@ namespace Renave.Anfir.Models
 {
     public class EntradaEstoqueSolicitacao
     {
+        public int ID_Empresa { get; set; }
         public string chassi { get; set; }
         public string chaveNotaFiscalRemessa { get; set; }
         public ClienteDaIte clienteDaIte { get; set; }

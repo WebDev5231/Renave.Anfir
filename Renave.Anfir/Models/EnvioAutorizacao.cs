@@ -7,6 +7,7 @@ namespace Renave.Anfir.Models
 {
     public class EnvioAutorizacao
     {
+        public int ID_Empresa { get; set; }
         public string cnpjEstabelecimentoDestino { get; set; }
         public string cpfOperadorResponsavel { get; set; }
         public int EstoqueOrigem { get; set; }
