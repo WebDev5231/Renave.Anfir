@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Renave.Anfir.Data.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -11,18 +12,30 @@ namespace Renave.Anfir.Business
 {
     public class CertificadoBusiness
     {
-        public HttpClientHandler GetHandler(int idEmpresa)
+        public HttpClientHandler GetHandler(int ID_Empresa)
         {
-            var certificadoFileName = "planalto_industria_2022.pfx";
-            var certificadoPassword = "123456789";
+            var empresaRenaveCertificadoData = new EmpresaRenaveCertificadoData();
 
-            var pathCert = HttpContext.Current.Server.MapPath("~/") + @"certificados\" + certificadoFileName;
+            var empresaRenaveCertificado = empresaRenaveCertificadoData.Get(ID_Empresa);
 
-            var certificate = new X509Certificate2(pathCert, certificadoPassword);
-            var handler = new HttpClientHandler();
-            handler.ClientCertificates.Add(certificate);
+            if (empresaRenaveCertificado == null) return null;
+            else
+            {
+                //Testes
+                //var certificadoFileName = "planalto_industria_2022.pfx";
+                //var certificadoPassword = "123456789";
 
-            return handler;
+                var certificadoFileName = empresaRenaveCertificado.CertificadoFileName;
+                var certificadoPassword = empresaRenaveCertificado.CertificadoPassword;
+
+                var pathCert = HttpContext.Current.Server.MapPath("~/") + @"certificados\" + certificadoFileName;
+
+                var certificate = new X509Certificate2(pathCert, certificadoPassword);
+                var handler = new HttpClientHandler();
+                handler.ClientCertificates.Add(certificate);
+
+                return handler;
+            }
         }
     }
 }

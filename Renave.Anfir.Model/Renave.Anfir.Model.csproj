@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}</ProjectGuid>
+    <ProjectGuid>{E80BA245-D032-46B8-A48F-60BF4B902FC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Renave.Anfir.Business</RootNamespace>
-    <AssemblyName>Renave.Anfir.Business</AssemblyName>
+    <RootNamespace>Renave.Anfir.Model</RootNamespace>
+    <AssemblyName>Renave.Anfir.Model</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,18 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CertificadoBusiness.cs" />
+    <Compile Include="EmpresaRenaveCertificado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Renave.Anfir.Data\Renave.Anfir.Data.csproj">
-      <Project>{c7ef01b7-b382-4b1b-a272-54461d6d3d66}</Project>
-      <Name>Renave.Anfir.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Renave.Anfir.Model\Renave.Anfir.Model.csproj">
-      <Project>{e80ba245-d032-46b8-a48f-60bf4b902fc3}</Project>
-      <Name>Renave.Anfir.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

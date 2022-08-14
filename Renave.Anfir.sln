@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renave.Anfir", "Renave.Anfi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renave.Anfir.Business", "Renave.Anfir.Business\Renave.Anfir.Business.csproj", "{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renave.Anfir.Model", "Renave.Anfir.Model\Renave.Anfir.Model.csproj", "{E80BA245-D032-46B8-A48F-60BF4B902FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renave.Anfir.Data", "Renave.Anfir.Data\Renave.Anfir.Data.csproj", "{C7EF01B7-B382-4B1B-A272-54461D6D3D66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80BA245-D032-46B8-A48F-60BF4B902FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80BA245-D032-46B8-A48F-60BF4B902FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80BA245-D032-46B8-A48F-60BF4B902FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80BA245-D032-46B8-A48F-60BF4B902FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7EF01B7-B382-4B1B-A272-54461D6D3D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7EF01B7-B382-4B1B-A272-54461D6D3D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7EF01B7-B382-4B1B-A272-54461D6D3D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7EF01B7-B382-4B1B-A272-54461D6D3D66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

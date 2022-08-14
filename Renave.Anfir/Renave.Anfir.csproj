@@ -199,7 +199,7 @@
     <Compile Include="Models\RestricoesVeiculo.cs" />
     <Compile Include="Models\SaidaEstoque.cs" />
     <Compile Include="Models\SaidaEstoqueSolicitacao.cs" />
-    <Compile Include="Models\TransferenciaEstoqueParaIteRetorno.cs" />
+    <Compile Include="Models\EstoqueRetorno.cs" />
     <Compile Include="Models\TransferenciaVindoDeIteParaIteSolicitacao.cs" />
     <Compile Include="Models\TransferenciaEstoqueParaIteSolicitacao.cs" />
     <Compile Include="Models\TermoEntradaEstoque.cs" />
