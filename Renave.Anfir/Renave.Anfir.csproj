@@ -175,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AutorizacaoTransferencia.cs" />
+    <Compile Include="Models\AutorizacaoTransferenciaRetorno.cs" />
     <Compile Include="Models\CancelamentoEstoque.cs" />
     <Compile Include="Models\CancelamentoSaidaEstoque.cs" />
     <Compile Include="Models\CancelamentosEntradaEstoqueIteSolicitacao.cs" />

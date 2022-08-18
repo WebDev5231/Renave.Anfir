@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -54,20 +55,23 @@ namespace Renave.Anfir.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Get(string chassi, string estadoAutorizacao)
+        public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi, string estadoAutorizacao)
         {
             try
             {
                 var url = basePath + "/api/ite/autorizacoes-transferencias?chassi=" + chassi + "&estadoAutorizacao=" + estadoAutorizacao;
 
-                using (var client = new HttpClient())
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(ID_Empresa);
+
+                using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<AutorizacaoTransferencia>(jsonString.Result);
+                        var retorno = JsonConvert.DeserializeObject<List<AutorizacaoTransferenciaRetorno>>(jsonString.Result);
 
                         return Request.CreateResponse(retorno);
                     }
