@@ -158,7 +158,7 @@
     <Compile Include="Controllers\AutorizacoesTransferenciasController.cs" />
     <Compile Include="Controllers\AutorizacoesTransferenciasEstoqueVindoDeIteController.cs" />
     <Compile Include="Controllers\CancelamentosAutorizacoesTransferenciasEstoqueVindoDeIteController.cs" />
-    <Compile Include="Controllers\CancelamentosEntradaEstoqueIte.cs" />
+    <Compile Include="Controllers\CancelamentosEntradaEstoqueIteController.cs" />
     <Compile Include="Controllers\CancelamentosSaidaEstoqueIteController.cs" />
     <Compile Include="Controllers\ClienteAutenticadoController.cs" />
     <Compile Include="Controllers\ClientesMontadorasController.cs" />

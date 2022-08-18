@@ -16,7 +16,7 @@ namespace Renave.Anfir.Controllers
     /// <summary>
     /// Cancelar entrada de estoque em ITE.
     /// </summary>
-    public class CancelamentosEntradaEstoqueIte : ApiController
+    public class CancelamentosEntradaEstoqueIteController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
