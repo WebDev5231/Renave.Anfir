@@ -31,7 +31,7 @@ namespace Renave.Anfir.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<ClienteMontadora>(jsonString.Result);
+                        var retorno = JsonConvert.DeserializeObject<List<ClienteMontadora>>(jsonString.Result);
 
                         return Request.CreateResponse(retorno);
                     }
