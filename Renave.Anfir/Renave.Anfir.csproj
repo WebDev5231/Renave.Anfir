@@ -169,7 +169,7 @@
     <Compile Include="Controllers\SaidasEstoqueController.cs" />
     <Compile Include="Controllers\TermoEntradaEstoqueController.cs" />
     <Compile Include="Controllers\TransferenciasParaIteController.cs" />
-    <Compile Include="Controllers\TransferenciasVindoDeIteParaIte.cs" />
+    <Compile Include="Controllers\TransferenciasVindoDeIteParaIteController.cs" />
     <Compile Include="Controllers\VeiculosController.cs" />
     <Compile Include="Controllers\VeiculosInacabadosMockController.cs" />
     <Compile Include="Global.asax.cs">

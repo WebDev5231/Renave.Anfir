@@ -16,7 +16,7 @@ namespace Renave.Anfir.Controllers
     /// <summary>
     /// Transferir estoque vindo de ITE para ITE solicitante.
     /// </summary>
-    public class TransferenciasVindoDeIteParaIte : ApiController
+    public class TransferenciasVindoDeIteParaIteController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
@@ -67,7 +67,8 @@ namespace Renave.Anfir.Controllers
                         }
                         else
                         {
-                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
+                            var jsonString = response.Content.ReadAsStringAsync();
+                            return Request.CreateResponse(response.StatusCode, jsonString);
                         }
                     }
                 }
