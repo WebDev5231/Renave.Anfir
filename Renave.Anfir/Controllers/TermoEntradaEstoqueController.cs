@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,16 @@ namespace Renave.Anfir.Controllers
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
-        public async Task<HttpResponseMessage> Get(int idEstoque)
+        public async Task<HttpResponseMessage> Get(int ID_Empresa, int idEstoque)
         {
             try
             {
                 var url = basePath + "/api/ite/estoques/" + idEstoque + "/termo-entrada-estoque";
 
-                using (var client = new HttpClient())
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(ID_Empresa);
+
+                using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
 
