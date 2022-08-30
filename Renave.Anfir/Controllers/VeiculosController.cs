@@ -20,16 +20,15 @@ namespace Renave.Anfir.Controllers
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
-        public async Task<HttpResponseMessage> Get(string chassi, string placa, string renavam, int ID_Empresa)
+        public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi, string placa, string renavam)
         {
             try
             {
                 var certificadoBusiness = new CertificadoBusiness();
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
-                var url = basePath + "/api/ite/estoques?chassi=" + handler + chassi + "&placa=" + placa + "&renavam=" + renavam;
+                var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&placa=" + placa + "&renavam=" + renavam;
                                 
-
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
