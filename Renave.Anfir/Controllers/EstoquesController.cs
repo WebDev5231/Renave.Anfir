@@ -26,8 +26,13 @@ namespace Renave.Anfir.Controllers
                 var certificadoBusiness = new CertificadoBusiness();
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
-                var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
+                //Passando ou não a placa irá guardar essa url sem a placa
+                var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
+                //Se houver placa preenchida reescreve a variavel url com a placa
+                if (!string.IsNullOrEmpty(placa))
+                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
+                
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
@@ -35,7 +40,7 @@ namespace Renave.Anfir.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<Estoque>(jsonString.Result);
+                        var retorno = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
 
                         return Request.CreateResponse(retorno);
                     }
