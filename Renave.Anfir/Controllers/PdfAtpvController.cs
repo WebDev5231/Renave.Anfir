@@ -19,7 +19,7 @@ namespace Renave.Anfir.Controllers
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
-        public async Task<HttpResponseMessage> Get(string chassi, int ID_Empresa)
+        public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi)
         {
             try
             {

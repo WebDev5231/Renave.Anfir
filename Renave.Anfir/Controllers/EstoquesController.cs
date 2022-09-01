@@ -32,7 +32,9 @@ namespace Renave.Anfir.Controllers
                 //Se houver placa preenchida reescreve a variavel url com a placa
                 if (!string.IsNullOrEmpty(placa))
                     url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
-                
+
+
+
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);

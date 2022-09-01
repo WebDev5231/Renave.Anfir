@@ -28,7 +28,14 @@ namespace Renave.Anfir.Controllers
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
                 var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&placa=" + placa + "&renavam=" + renavam;
-                                
+
+                if (!string.IsNullOrEmpty(placa))
+                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&placa=" + placa;
+
+                if (!string.IsNullOrEmpty(renavam))
+                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&renavam=" + renavam;
+
+
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
@@ -36,7 +43,7 @@ namespace Renave.Anfir.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<Veiculo>(jsonString.Result);
+                        var retorno = JsonConvert.DeserializeObject<List<Veiculo>>(jsonString.Result);
 
                         return Request.CreateResponse(retorno);
                     }
