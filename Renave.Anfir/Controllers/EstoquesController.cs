@@ -33,6 +33,8 @@ namespace Renave.Anfir.Controllers
                 if (!string.IsNullOrEmpty(placa))
                     url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
 
+                if (!string.IsNullOrEmpty(estadoEstoque))
+                    url = basePath + "/api/ite/estoques?chassi=" + chassi;
 
 
                 using (var client = new HttpClient(handler))
