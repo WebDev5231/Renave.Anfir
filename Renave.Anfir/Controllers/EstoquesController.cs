@@ -44,9 +44,10 @@ namespace Renave.Anfir.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
 
+                        var retorno = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
                         return Request.CreateResponse(retorno);
+
                     }
                     else if (response.StatusCode == (HttpStatusCode)422)
                     {

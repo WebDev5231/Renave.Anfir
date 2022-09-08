@@ -16,7 +16,7 @@ namespace Renave.Anfir.Models
         public string chassi { get; set; }
         public object tipoCrv { get; set; }
         public long quilometragemHodometro { get; set; }
-        public DateTimeOffset dataHoraMedicaoHodometro { get; set; }
+        public DateTimeOffset? dataHoraMedicaoHodometro { get; set; }
         public EntradaEstoque entradaEstoque { get; set; }
         public object saidaEstoque { get; set; }
         public object cancelamentoEstoque { get; set; }
