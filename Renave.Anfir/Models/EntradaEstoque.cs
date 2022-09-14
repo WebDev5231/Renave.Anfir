@@ -16,7 +16,7 @@ namespace Renave.Anfir.Models
         public object dataHoraEnvioNotaFiscalServicoEntrada { get; set; }
         public string chaveNotaFiscalRemessaEntrada { get; set; }
         public DateTimeOffset? dataHoraEnvioNotaFiscalRemessaEntrada { get; set; }
-        public long numeroTermoEntradaEstoque { get; set; }
+        public long? numeroTermoEntradaEstoque { get; set; }
         public Vendedor vendedor { get; set; }
     }
 }
