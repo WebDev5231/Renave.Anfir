@@ -27,13 +27,16 @@ namespace Renave.Anfir.Controllers
                 var certificadoBusiness = new CertificadoBusiness();
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
-                var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&placa=" + placa + "&renavam=" + renavam;
+                var url = basePath + "/api/ite/Veiculos?chassi=" + chassi + "&placa=" + placa + "&renavam=" + renavam;
 
                 if (!string.IsNullOrEmpty(placa))
-                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&placa=" + placa;
+                    url = basePath + "/api/ite/Veiculos?chassi=" + chassi + "&placa=" + placa;
 
                 if (!string.IsNullOrEmpty(renavam))
-                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&renavam=" + renavam;
+                    url = basePath + "/api/ite/Veiculos?chassi=" + chassi + "&renavam=" + renavam;
+
+                if (!string.IsNullOrEmpty(renavam))
+                    url = basePath + "/api/ite/Veiculos?chassi=" + chassi; 
 
 
                 using (var client = new HttpClient(handler))
