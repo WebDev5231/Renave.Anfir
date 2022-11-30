@@ -15,8 +15,8 @@ namespace Renave.Anfir.Models
         public string estado { get; set; }
         public bool estoqueEmIte { get; set; }
         public long id { get; set; }
-        public long idEstoqueGeradoPorTransferencia { get; set; }
-        public long idEstoqueOrigemTransferencia { get; set; }
+        public long? idEstoqueGeradoPorTransferencia { get; set; }
+        public long? idEstoqueOrigemTransferencia { get; set; }
         public string numeroCrv { get; set; }
         public OrigemPorCancelamentoEstoque origemPorCancelamentoEstoque { get; set; }
         public string placa { get; set; }
