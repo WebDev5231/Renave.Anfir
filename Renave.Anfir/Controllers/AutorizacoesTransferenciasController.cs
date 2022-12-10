@@ -55,7 +55,7 @@ namespace Renave.Anfir.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi, string estadoAutorizacao)
+        public async Task<HttpResponseMessage> Post(int ID_Empresa, string chassi, string estadoAutorizacao)
         {
             try
             {
