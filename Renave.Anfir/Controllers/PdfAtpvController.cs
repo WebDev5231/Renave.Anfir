@@ -15,15 +15,57 @@ namespace Renave.Anfir.Controllers
     /// <summary>
     /// Consultar PDF do ATPV do veículo
     /// </summary>
+    [RoutePrefix("api")]
     public class PdfAtpvController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
+        [Route("ite/pdf-atpv")]
         public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi)
         {
             try
             {
                 var url = basePath + "/api/ite/pdf-atpv?chassi=" + chassi;
+
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(ID_Empresa);
+
+                using (var client = new HttpClient(handler))
+                {
+                    var response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonString = response.Content.ReadAsStringAsync();
+                        var retorno = JsonConvert.DeserializeObject<PdfAtpv>(jsonString.Result);
+
+                        return Request.CreateResponse(retorno);
+                    }
+                    else if (response.StatusCode == (HttpStatusCode)422)
+                    {
+                        var jsonString = response.Content.ReadAsStringAsync();
+                        var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+
+                        return Request.CreateResponse((HttpStatusCode)422, retorno);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [Route("montadora/pdf-atpv")]
+        public async Task<HttpResponseMessage> GetMontadora(int ID_Empresa, string chassi)
+        {
+            try
+            {
+                var url = basePath + "/api/montadora/pdf-atpv?chassi=" + chassi;
 
                 var certificadoBusiness = new CertificadoBusiness();
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
