@@ -12,8 +12,8 @@ namespace Renave.Anfir.Models
         public string chaveNotaFiscalRemessa { get; set; }
         public string chaveNotaFiscalServico { get; set; }
         public string cpfOperadorResponsavel { get; set; }
-        public DateTimeOffset dataHoraMedicaoHodometro { get; set; }
-        public DateTimeOffset dataTransferenciaEstoque { get; set; }
+        public DateTime dataHoraMedicaoHodometro { get; set; }
+        public string dataTransferenciaEstoque { get; set; }
         public long idAutorizacao { get; set; }
         public int quilometragemHodometro { get; set; }
         public double valorProduto { get; set; }

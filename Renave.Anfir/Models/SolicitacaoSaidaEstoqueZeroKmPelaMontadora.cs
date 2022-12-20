@@ -11,7 +11,7 @@ namespace Renave.Anfir.Models
         public string chaveNotaFiscal { get; set; }
         public CompradorSaidaEstoque comprador { get; set; }
         public string cpfOperadorResponsavel { get; set; }
-        public DateTimeOffset dataVenda { get; set; }
+        public string dataVenda { get; set; }
         public string emailEstabelecimento { get; set; }
         public EntregaIndicada entregaIndicada { get; set; }
         public long idEstoque { get; set; }
