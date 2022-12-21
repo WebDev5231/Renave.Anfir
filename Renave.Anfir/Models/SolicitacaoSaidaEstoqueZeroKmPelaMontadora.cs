@@ -15,7 +15,7 @@ namespace Renave.Anfir.Models
         public string emailEstabelecimento { get; set; }
         public EntregaIndicada entregaIndicada { get; set; }
         public long idEstoque { get; set; }
-        public string tipoBeneficiarioTributario { get; set; }
+        public string tipoBeneficioTributario { get; set; }
         public double valorVenda { get; set; }
     }
 }
