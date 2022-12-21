@@ -7,7 +7,7 @@ namespace Renave.Anfir.Models
 {
     public class EstoqueMontadora
     {
-        public BeneficioTributarioJson tipoBeneficioTributario { get; set; }
+        public BeneficioTributarioJson tipoBeneficioTributarioJson { get; set; }
         public CancelamentoEstoque cancelamentoEstoque { get; set; }
         public string chassi { get; set; }
         public Comprador comprador { get; set; }
