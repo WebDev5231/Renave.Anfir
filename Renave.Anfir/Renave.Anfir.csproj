@@ -189,7 +189,7 @@
     <Compile Include="Models\AutorizacaoTransferencia.cs" />
     <Compile Include="Models\AutorizacaoTransferenciaMontadora.cs" />
     <Compile Include="Models\AutorizacaoTransferenciaRetorno.cs" />
-    <Compile Include="Models\BeneficioTributario.cs" />
+    <Compile Include="Models\BeneficioTributarioJson.cs" />
     <Compile Include="Models\CancelamentoEntrega.cs" />
     <Compile Include="Models\CancelamentoEstoque.cs" />
     <Compile Include="Models\CancelamentoSaidaEstoque.cs" />
