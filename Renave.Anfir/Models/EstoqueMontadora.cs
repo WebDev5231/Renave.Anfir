@@ -7,9 +7,10 @@ namespace Renave.Anfir.Models
 {
     public class EstoqueMontadora
     {
-        public BeneficioTributario beneficioTributario { get; set; }
+        public BeneficioTributarioJson beneficioTributarioJson { get; set; }
         public CancelamentoEstoque cancelamentoEstoque { get; set; }
         public string chassi { get; set; }
+        public Comprador comprador { get; set; }
         public string codigoSegurancaCrv { get; set; }
         public DateTimeOffset dataHoraMedicaoHodometro { get; set; }
         public EntradaEstoque entradaEstoque { get; set; }
@@ -17,8 +18,8 @@ namespace Renave.Anfir.Models
         public string estado { get; set; }
         public bool estoqueEmIte { get; set; }
         public long id { get; set; }
-        public long idEstoqueGeradoPorTransferencia { get; set; }
-        public long idEstoqueOrigemTransferencia { get; set; }
+        public long? idEstoqueGeradoPorTransferencia { get; set; }
+        public long? idEstoqueOrigemTransferencia { get; set; }
         public string numeroCrv { get; set; }
         public OrigemPorCancelamentoEstoque origemPorCancelamentoEstoque { get; set; }
         public string placa { get; set; }

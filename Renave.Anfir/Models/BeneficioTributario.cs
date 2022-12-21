@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Renave.Anfir.Models
 {
-    public class BeneficioTributario
+    public class BeneficioTributarioJson
     {
-        public DateTimeOffset dataFimVigencia { get; set; }
-        public DateTimeOffset dataInicioVigencia { get; set; }
+        public string dataFimVigencia { get; set; }
+        public string dataInicioVigencia { get; set; }
         public string tipo { get; set; }
     }
 }

@@ -97,7 +97,7 @@ namespace Renave.Anfir.Controllers
                     {
                         var jsonString = response.Content.ReadAsStringAsync();
 
-                        var retorno = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
+                        var retorno = JsonConvert.DeserializeObject<List<EstoqueMontadora>>(jsonString.Result);
                         return Request.CreateResponse(retorno);
 
                     }

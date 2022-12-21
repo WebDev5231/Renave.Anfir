@@ -9,9 +9,10 @@ namespace Renave.Anfir.Models
     {
         public string bairro { get; set; }
         public string cep { get; set; }
+        public string codidoMunicipio { get; set; }
         public string complemento { get; set; }
         public string logradouro { get; set; }
         public Municipio municipio { get; set; }
-        public string numero { get; set; }
+
     }
 }
