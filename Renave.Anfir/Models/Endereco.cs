@@ -13,6 +13,7 @@ namespace Renave.Anfir.Models
         public string complemento { get; set; }
         public string logradouro { get; set; }
         public Municipio municipio { get; set; }
+        public string numero { get; set; }
 
     }
 }
