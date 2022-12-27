@@ -9,7 +9,7 @@ namespace Renave.Anfir.Models
     {
         public int ID_Empresa { get; set; }
         public string cpfOperadorResponsavel { get; set; }
-        public DateTimeOffset dataCancelamentoSaidaEstoque { get; set; }
+        public DateTime dataCancelamentoSaidaEstoque { get; set; }
         public long idEstoque { get; set; }
     }
 }

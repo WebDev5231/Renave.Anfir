@@ -12,7 +12,7 @@ namespace Renave.Anfir.Models
         public string chassi { get; set; }
         public Comprador comprador { get; set; }
         public string codigoSegurancaCrv { get; set; }
-        public DateTimeOffset dataHoraMedicaoHodometro { get; set; }
+        public DateTime dataHoraMedicaoHodometro { get; set; }
         public EntradaEstoque entradaEstoque { get; set; }
         public List<Entrega> entregas { get; set; }
         public string estado { get; set; }
