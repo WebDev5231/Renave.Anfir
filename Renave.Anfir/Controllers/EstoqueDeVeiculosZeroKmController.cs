@@ -38,7 +38,7 @@ namespace Renave.Anfir.Controllers
                 if (!string.IsNullOrEmpty(chassi))
                     url = basePath + "/api/montadora/veiculos-zero-km-pendentes-entrada-estoque?chassi=" + chassi;
 
-                
+
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
@@ -320,9 +320,9 @@ namespace Renave.Anfir.Controllers
                             }
                             else
                             {
-                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada, porém não foi possível gravar no Banco de Dados");
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log");
                             }
-                            
+
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {
