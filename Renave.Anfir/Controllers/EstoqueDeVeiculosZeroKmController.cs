@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -303,7 +304,25 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<EstoqueMontadora>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            //Efetua Insert no Banco de Dados
+                            var renaveSaidaEstoque = new RenaveSaidaEstoque();
+
+                            renaveSaidaEstoque.ID_Empresa = solicitacaoSaidaEstoqueZeroKmPelaMontadora.ID_Empresa;
+                            renaveSaidaEstoque.Chassi = retorno.chassi;
+                            renaveSaidaEstoque.CpfOperadorResponsavel = retorno.saidaEstoque.cpfOperadorResponsavel;
+                            renaveSaidaEstoque.IteOuMontadora = "M";
+                            renaveSaidaEstoque.DataHora = DateTime.Parse(retorno.saidaEstoque.dataHora.ToString());
+
+                            var estoqueBusiness = new RenaveSaidaEstoqueBusiness();
+                            if (estoqueBusiness.SaidasEstoqueZeroKm(renaveSaidaEstoque))
+                            {
+                                return Request.CreateResponse(retorno);
+                            }
+                            else
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada, porém não foi possível gravar no Banco de Dados");
+                            }
+                            
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {

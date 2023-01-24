@@ -329,6 +329,10 @@
       <Project>{69D7733D-EAF8-4F06-8BCB-C3C812F4F398}</Project>
       <Name>Renave.Anfir.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Renave.Anfir.Model\Renave.Anfir.Model.csproj">
+      <Project>{E80BA245-D032-46B8-A48F-60BF4B902FC3}</Project>
+      <Name>Renave.Anfir.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
