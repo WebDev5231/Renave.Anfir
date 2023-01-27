@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Renave.Anfir.Model
 {
     public class RenaveSaidaEstoque
     {
+        [Key]
         public long Id { get; set; }
         public int ID_Empresa { get; set; }
         public string Chassi { get; set; }
