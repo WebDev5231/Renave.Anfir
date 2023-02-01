@@ -21,5 +21,16 @@ namespace Renave.Anfir.Business
 
             return false;
         }
+        public bool SaidasEstoqueIte(RenaveSaidaEstoque renaveSaidaEstoque)
+        {
+            var renaveSaidaEstoqueData = new RenaveSaidaEstoqueData();
+
+            if (renaveSaidaEstoqueData.Insert(renaveSaidaEstoque))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

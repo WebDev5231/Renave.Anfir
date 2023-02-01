@@ -311,7 +311,7 @@ namespace Renave.Anfir.Controllers
                             renaveSaidaEstoque.Chassi = retorno.chassi;
                             renaveSaidaEstoque.CpfOperadorResponsavel = retorno.saidaEstoque.cpfOperadorResponsavel;
                             renaveSaidaEstoque.IteOuMontadora = "M";
-                            renaveSaidaEstoque.DataHora = DateTime.Parse(retorno.saidaEstoque.dataHora.ToString());
+                            renaveSaidaEstoque.DataHora = DateTime.Now;
 
                             var estoqueBusiness = new RenaveSaidaEstoqueBusiness();
                             if (estoqueBusiness.SaidasEstoqueZeroKm(renaveSaidaEstoque))
@@ -320,7 +320,7 @@ namespace Renave.Anfir.Controllers
                             }
                             else
                             {
-                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log");
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log.");
                             }
 
                         }

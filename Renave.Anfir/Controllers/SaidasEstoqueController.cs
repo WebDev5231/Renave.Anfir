@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -54,9 +55,28 @@ namespace Renave.Anfir.Controllers
                         if (response.IsSuccessStatusCode)
                         {
                             var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<object>(jsonString.Result);
+                            var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            //Insert no banco
+                            var renaveSaidaEstoque = new RenaveSaidaEstoque();
+
+                            renaveSaidaEstoque.ID_Empresa = solicitacao.ID_Empresa;
+                            renaveSaidaEstoque.Chassi = retorno.chassi;
+                            renaveSaidaEstoque.CpfOperadorResponsavel = retorno.saidaEstoque.cpfOperadorResponsavel;
+                            renaveSaidaEstoque.IteOuMontadora = "I";
+                            renaveSaidaEstoque.DataHora = DateTime.Now;
+
+                            var estoqueBusiness = new RenaveSaidaEstoqueBusiness();
+
+                            if (estoqueBusiness.SaidasEstoqueIte(renaveSaidaEstoque))
+                            {
+                                return Request.CreateResponse(retorno);
+                            }
+                            else
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log.");
+                            }
+
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {

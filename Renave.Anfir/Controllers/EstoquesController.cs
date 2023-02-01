@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -95,9 +96,10 @@ namespace Renave.Anfir.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var jsonString = response.Content.ReadAsStringAsync();
 
+                        var jsonString = response.Content.ReadAsStringAsync();
                         var retorno = JsonConvert.DeserializeObject<List<EstoqueMontadora>>(jsonString.Result);
+
                         return Request.CreateResponse(retorno);
 
                     }
