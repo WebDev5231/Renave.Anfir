@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -54,9 +55,30 @@ namespace Renave.Anfir.Controllers
                         if (response.IsSuccessStatusCode)
                         {
                             var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<object>(jsonString.Result);
+                            var retorno = JsonConvert.DeserializeObject<Estoque>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            //INSERT DATABASE
+                            var renaveOperacoes = new RenaveOperacoe();
+
+                            renaveOperacoes.ID_Empresa = envioAutorizacao.ID_Empresa;
+                            renaveOperacoes.Chassi = retorno.chassi;
+                            renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cpfOperadorResponsavel;
+                            renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cnpjEstabelecimentoDestino;
+                            renaveOperacoes.SaidaOuTransferencia = "Transferencia";
+                            renaveOperacoes.IteOuMontadora = "I";
+                            renaveOperacoes.DataHora = DateTime.Now;
+
+                            var estoqueBusiness = new RenaveOperacoesBusiness();
+
+                            if (estoqueBusiness.TransferenciaEstoqueIte(renaveOperacoes))
+                            {
+                                return Request.CreateResponse(retorno);
+                            }
+                            else
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Transferencia realizada com sucesso, Erro ao gravar log.");
+                            }
+
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {

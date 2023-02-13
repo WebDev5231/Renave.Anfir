@@ -11,11 +11,11 @@ namespace Renave.Anfir.Data.Repository
 {
     public class RenaveSaidaEstoqueData
     {
-        public bool Insert(RenaveSaidaEstoque renaveSaidaEstoque)
+        public bool Insert(RenaveOperacoe renaveOperacoesEstoque)
         {
             using (var cn = new SqlConnection(Database.ConnectionString))
             {
-                var retorno = cn.Insert(renaveSaidaEstoque);
+                var retorno = cn.Insert(renaveOperacoesEstoque);
 
                 return true;
             }

@@ -58,23 +58,25 @@ namespace Renave.Anfir.Controllers
                             var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
 
                             //Insert no banco
-                            var renaveSaidaEstoque = new RenaveSaidaEstoque();
+                            var renaveOperacoes = new RenaveOperacoe();
 
-                            renaveSaidaEstoque.ID_Empresa = solicitacao.ID_Empresa;
-                            renaveSaidaEstoque.Chassi = retorno.chassi;
-                            renaveSaidaEstoque.CpfOperadorResponsavel = retorno.saidaEstoque.cpfOperadorResponsavel;
-                            renaveSaidaEstoque.IteOuMontadora = "I";
-                            renaveSaidaEstoque.DataHora = DateTime.Now;
+                            renaveOperacoes.ID_Empresa = solicitacao.ID_Empresa;
+                            renaveOperacoes.Chassi = retorno.chassi;
+                            renaveOperacoes.CpfOperadorResponsavel = solicitacao.cpfOperadorResponsavel;
+                            renaveOperacoes.CnpjEstabelecimentoDestino = null;
+                            renaveOperacoes.SaidaOuTransferencia = "Saida";
+                            renaveOperacoes.IteOuMontadora = "I";
+                            renaveOperacoes.DataHora = DateTime.Now;
 
-                            var estoqueBusiness = new RenaveSaidaEstoqueBusiness();
+                            var estoqueBusiness = new RenaveOperacoesBusiness();
 
-                            if (estoqueBusiness.SaidasEstoqueIte(renaveSaidaEstoque))
+                            if (estoqueBusiness.SaidasEstoqueIte(renaveOperacoes))
                             {
                                 return Request.CreateResponse(retorno);
                             }
                             else
                             {
-                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log.");
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída de estoque efetuada com sucesso. Erro ao Gravar log.");
                             }
 
                         }

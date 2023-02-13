@@ -305,22 +305,25 @@ namespace Renave.Anfir.Controllers
                             var retorno = JsonConvert.DeserializeObject<EstoqueMontadora>(jsonString.Result);
 
                             //Efetua Insert no Banco de Dados
-                            var renaveSaidaEstoque = new RenaveSaidaEstoque();
+                            var renaveOperacoes = new RenaveOperacoe();
 
-                            renaveSaidaEstoque.ID_Empresa = solicitacaoSaidaEstoqueZeroKmPelaMontadora.ID_Empresa;
-                            renaveSaidaEstoque.Chassi = retorno.chassi;
-                            renaveSaidaEstoque.CpfOperadorResponsavel = retorno.saidaEstoque.cpfOperadorResponsavel;
-                            renaveSaidaEstoque.IteOuMontadora = "M";
-                            renaveSaidaEstoque.DataHora = DateTime.Now;
+                            renaveOperacoes.ID_Empresa = solicitacaoSaidaEstoqueZeroKmPelaMontadora.ID_Empresa;
+                            renaveOperacoes.Chassi = retorno.chassi;
+                            renaveOperacoes.CpfOperadorResponsavel = solicitacaoSaidaEstoqueZeroKmPelaMontadora.cpfOperadorResponsavel;
+                            renaveOperacoes.CnpjEstabelecimentoDestino = null;
+                            renaveOperacoes.SaidaOuTransferencia = "Saida";
+                            renaveOperacoes.IteOuMontadora = "M";
+                            renaveOperacoes.DataHora = DateTime.Now;
 
-                            var estoqueBusiness = new RenaveSaidaEstoqueBusiness();
-                            if (estoqueBusiness.SaidasEstoqueZeroKm(renaveSaidaEstoque))
+                            var estoqueBusiness = new RenaveOperacoesBusiness();
+
+                            if (estoqueBusiness.SaidasEstoqueZeroKm(renaveOperacoes))
                             {
                                 return Request.CreateResponse(retorno);
                             }
                             else
                             {
-                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Porém não foi possível gravar log.");
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Saída efetuada com sucesso. Erro ao gravar log.");
                             }
 
                         }

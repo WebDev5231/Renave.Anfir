@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,28 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<AutorizacaoTransferenciaMontadora>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            //INSERT DATABASE
+                            var renaveOperacoes = new RenaveOperacoe();
+
+                            renaveOperacoes.ID_Empresa = envioAutorizacaoTransferenciaParaItePelaMontadora.ID_Empresa;
+                            renaveOperacoes.Chassi = retorno.chassi;
+                            renaveOperacoes.CpfOperadorResponsavel = envioAutorizacaoTransferenciaParaItePelaMontadora.cpfOperadorResponsavel;
+                            renaveOperacoes.CnpjEstabelecimentoDestino = envioAutorizacaoTransferenciaParaItePelaMontadora.cnpjIteDestino;
+                            renaveOperacoes.SaidaOuTransferencia = "Transferencia";
+                            renaveOperacoes.IteOuMontadora = "M";
+                            renaveOperacoes.DataHora = DateTime.Now;
+
+                            var renaveTransferencia = new RenaveOperacoesBusiness();
+
+                            if (renaveTransferencia.TransferenciaEstoqueMontadora(renaveOperacoes))
+                            {
+                                return Request.CreateResponse(retorno);
+                            }
+                            else
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Transferência realizada com sucesso. Erro ao gravar log.");
+                            }
+
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {
