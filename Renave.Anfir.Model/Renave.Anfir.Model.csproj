@@ -50,7 +50,6 @@
     <Compile Include="EmpresaRenaveCertificado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenaveOperacoe.cs" />
-    <Compile Include="RenaveSaidaEstoque.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
