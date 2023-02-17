@@ -10,6 +10,7 @@ namespace Renave.Anfir.Models
         public string cpfOperadorResponsavel { get; set; }
         public DateTimeOffset? dataHora { get; set; }
         public object chaveNotaFiscalEntrada { get; set; }
+        public object dataHoraRegistro { get; set; }
         public object chaveNotaFiscalSaida { get; set; }
         public object dataHoraEnvioNotaFiscalEntrada { get; set; }
         public object chaveNotaFiscalServicoEntrada { get; set; }

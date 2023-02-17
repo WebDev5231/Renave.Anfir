@@ -32,12 +32,12 @@ namespace Renave.Anfir.Controllers
                 //Passando ou não a placa irá guardar essa url sem a placa
                 var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
-                //Se houver placa preenchida reescreve a variavel url com a placa
-                if (!string.IsNullOrEmpty(placa))
-                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
 
                 if (!string.IsNullOrEmpty(estadoEstoque))
-                    url = basePath + "/api/ite/estoques?chassi=" + chassi;
+                    url = basePath + "/api/ite/estoques?estadoEstoque=" + estadoEstoque;
+
+                if (!string.IsNullOrEmpty(chassi))
+                    url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
 
                 using (var client = new HttpClient(handler))
@@ -82,12 +82,11 @@ namespace Renave.Anfir.Controllers
                 //Passando ou não a placa irá guardar essa url sem a placa
                 var url = basePath + "/api/montadora/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
-                //Se houver placa preenchida reescreve a variavel url com a placa
-                if (!string.IsNullOrEmpty(placa))
-                    url = basePath + "/api/montadora/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque + "&placa=" + placa;
-
                 if (!string.IsNullOrEmpty(estadoEstoque))
-                    url = basePath + "/api/montadora/estoques?chassi=" + chassi;
+                    url = basePath + "/api/montadora/estoques?estadoEstoque=" + estadoEstoque;
+
+                if (!string.IsNullOrEmpty(chassi))
+                    url = basePath + "/api/montadora/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
 
                 using (var client = new HttpClient(handler))

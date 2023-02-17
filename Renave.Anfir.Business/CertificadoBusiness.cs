@@ -21,10 +21,6 @@ namespace Renave.Anfir.Business
             if (empresaRenaveCertificado == null) return null;
             else
             {
-                //Testes
-                //var certificadoFileName = "planalto_industria_2022.pfx";
-                //var certificadoPassword = "123456789";
-
                 var certificadoFileName = empresaRenaveCertificado.CertificadoFileName;
                 var certificadoPassword = empresaRenaveCertificado.CertificadoPassword;
 
