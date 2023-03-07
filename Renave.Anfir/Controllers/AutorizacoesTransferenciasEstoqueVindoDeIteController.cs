@@ -63,7 +63,7 @@ namespace Renave.Anfir.Controllers
                             renaveOperacoes.ID_Empresa = envioAutorizacao.ID_Empresa;
                             renaveOperacoes.Chassi = retorno.chassi;
                             renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cpfOperadorResponsavel;
-                            renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cnpjEstabelecimentoDestino;
+                            renaveOperacoes.CnpjEstabelecimentoDestino = envioAutorizacao.cnpjEstabelecimentoDestino;
                             renaveOperacoes.SaidaOuTransferencia = "Transferencia";
                             renaveOperacoes.IteOuMontadora = "I";
                             renaveOperacoes.DataHora = DateTime.Now;
