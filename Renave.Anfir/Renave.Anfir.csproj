@@ -167,6 +167,7 @@
     <Compile Include="Controllers\CancelamentosAutorizacoesTransferenciasEstoqueVindoDeIteController.cs" />
     <Compile Include="Controllers\CancelamentosEntradaEstoqueIteController.cs" />
     <Compile Include="Controllers\CancelamentosSaidaEstoqueIteController.cs" />
+    <Compile Include="Controllers\CertificateController.cs" />
     <Compile Include="Controllers\ClienteAutenticadoController.cs" />
     <Compile Include="Controllers\ClientesMontadorasController.cs" />
     <Compile Include="Controllers\EntradasEstoqueController.cs" />

@@ -1,4 +1,5 @@
-﻿using Renave.Anfir.Data.Repository;
+﻿using Renave.Anfir.Data;
+using Renave.Anfir.Data.Repository;
 using Renave.Anfir.Model;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,17 @@ namespace Renave.Anfir.Business
             var renaveTransferenciaEstoque = new RenaveSaidaEstoqueData();
 
             if (renaveTransferenciaEstoque.Insert(renaveTransferenciaMontadora))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public bool UpdateCertificate(EmpresaRenaveCertificado updateCertificate)
+        {
+            var renaveUpdateCertificate = new UpdateCertificateData();
+
+            if (renaveUpdateCertificate.Update(updateCertificate))
             {
                 return true;
             }
