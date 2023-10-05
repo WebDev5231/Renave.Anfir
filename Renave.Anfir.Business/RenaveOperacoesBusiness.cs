@@ -45,6 +45,7 @@ namespace Renave.Anfir.Business
 
             return false;
         }
+
         public bool TransferenciaEstoqueMontadora(RenaveOperacoe renaveTransferenciaMontadora)
         {
             var renaveTransferenciaEstoque = new RenaveSaidaEstoqueData();
@@ -56,11 +57,33 @@ namespace Renave.Anfir.Business
 
             return false;
         }
+
         public bool UpdateCertificate(EmpresaRenaveCertificado updateCertificate)
         {
-            var renaveUpdateCertificate = new UpdateCertificateData();
+            var renaveUpdateCertificate = new CertificateData();
 
             if (renaveUpdateCertificate.Update(updateCertificate))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool GetCertificate(int idEmpresa, EmpresaRenaveCertificado certificate)
+        {
+            var renaveCertificateData = new CertificateData();
+            certificate = renaveCertificateData.Get(idEmpresa);
+
+            return certificate != null;
+        }
+
+
+        public bool InsertCertificate(EmpresaRenaveCertificado certificateInsert)
+        {
+            var renaveTransferenciaEstoque = new CertificateData();
+
+            if (renaveTransferenciaEstoque.Insert(certificateInsert))
             {
                 return true;
             }

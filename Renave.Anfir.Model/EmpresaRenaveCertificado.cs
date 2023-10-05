@@ -10,7 +10,7 @@ namespace Renave.Anfir.Model
     [Table("empresaRenaveCertificado")]
     public class EmpresaRenaveCertificado
     {
-        [ExplicitKey]
+        [Key]
         public int ID_Empresa { get; set; }
         public string Data_inclusao { get; set; }
         public string CertificadoFileName { get; set; }

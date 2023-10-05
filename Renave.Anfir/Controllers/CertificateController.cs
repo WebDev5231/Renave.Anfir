@@ -10,17 +10,17 @@ using System.Text.RegularExpressions;
 
 namespace Renave.Anfir.Controllers
 {
-    [RoutePrefix("api/certificate")] 
+    [RoutePrefix("api/certificate")]
     public class CertificateController : ApiController
     {
         [HttpPost]
-        [Route("upload")] 
+        [Route("upload")]
         public HttpResponseMessage UploadFile()
         {
             try
             {
                 var httpRequest = HttpContext.Current.Request;
-                var idEmpresa = HttpContext.Current.Request.Form["empresa"];
+                var ID_Empresa = HttpContext.Current.Request.Form["empresa"];
                 var password = HttpContext.Current.Request.Form["password"];
 
                 HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
@@ -34,25 +34,49 @@ namespace Renave.Anfir.Controllers
 
                     var filePath = Path.Combine(@"C:\inetpub\wwwroot\renave.anfir\certificados", fileName);
 
-                    postedFile.SaveAs(filePath);
-
-                    var updateCertificate = new EmpresaRenaveCertificado();
-                    updateCertificate.ID_Empresa = int.Parse(idEmpresa);
-                    updateCertificate.CertificadoFileName = fileName;
-                    updateCertificate.CertificadoPassword = password;
-                    updateCertificate.Data_inclusao = DateTime.Now.ToString("dd/MM/yyyy");
-
                     var renaveOperacoesBusiness = new RenaveOperacoesBusiness();
 
-                    bool isUpdateSuccessful = renaveOperacoesBusiness.UpdateCertificate(updateCertificate);
+                    var existingCertificate = new EmpresaRenaveCertificado();
+                    bool certificateExists = renaveOperacoesBusiness.GetCertificate(int.Parse(ID_Empresa), existingCertificate);
 
-                    if (isUpdateSuccessful)
+                    if (!certificateExists)
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK, "O certificado foi atualizado com sucesso.");
+                        var newCertificate = new EmpresaRenaveCertificado();
+                        newCertificate.CertificadoFileName = fileName;
+                        newCertificate.CertificadoPassword = password;
+                        newCertificate.ID_Empresa = int.Parse(ID_Empresa);
+                        newCertificate.Data_inclusao = DateTime.Now.ToString("dd/MM/yyyy");
+
+                        bool isInsertSuccessful = renaveOperacoesBusiness.InsertCertificate(newCertificate);
+
+                        if (isInsertSuccessful)
+                        {
+                            postedFile.SaveAs(filePath);
+                            return Request.CreateResponse(HttpStatusCode.OK, "O certificado foi inserido com sucesso.");
+                        }
+                        else
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Erro ao inserir o certificado digital.");
+                        }
                     }
                     else
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Erro ao atualizar o certificado digital.");
+                        existingCertificate.ID_Empresa = int.Parse(ID_Empresa);
+                        existingCertificate.CertificadoFileName = fileName;
+                        existingCertificate.CertificadoPassword = password;
+                        existingCertificate.Data_inclusao = DateTime.Now.ToString("dd/MM/yyyy");
+
+                        bool isUpdateSuccessful = renaveOperacoesBusiness.UpdateCertificate(existingCertificate);
+
+                        if (isUpdateSuccessful)
+                        {
+                            postedFile.SaveAs(filePath);
+                            return Request.CreateResponse(HttpStatusCode.OK, "O certificado foi atualizado com sucesso.");
+                        }
+                        else
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Erro ao atualizar o certificado digital.");
+                        }
                     }
                 }
 

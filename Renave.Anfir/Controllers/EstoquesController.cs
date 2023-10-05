@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
-using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -29,9 +28,7 @@ namespace Renave.Anfir.Controllers
                 var certificadoBusiness = new CertificadoBusiness();
                 var handler = certificadoBusiness.GetHandler(ID_Empresa);
 
-                //Passando ou não a placa irá guardar essa url sem a placa
                 var url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
-
 
                 if (!string.IsNullOrEmpty(estadoEstoque))
                     url = basePath + "/api/ite/estoques?estadoEstoque=" + estadoEstoque;
