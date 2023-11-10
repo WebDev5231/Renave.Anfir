@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Renave.Anfir.Model
 {
-    public class RenaveOperacoe
+    [Table("RenaveOperacoes")]
+    public class RenaveOperacoes
     {
         [Key]
         public long Id { get; set; }

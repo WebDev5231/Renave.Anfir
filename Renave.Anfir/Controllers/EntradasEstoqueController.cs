@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,50 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
 
-                            return Request.CreateResponse(retorno);
+                            try
+                            {
+                                //Insert DBO
+                                var renaveEntradasEstoqueIte = new EntradasEstoqueIte();
+
+                                renaveEntradasEstoqueIte.ID_Empresa = solicitacao.ID_Empresa;
+                                renaveEntradasEstoqueIte.Chassi = solicitacao.chassi;
+                                renaveEntradasEstoqueIte.ChaveNotaFiscalRemessa = solicitacao.chaveNotaFiscalRemessa;
+                                renaveEntradasEstoqueIte.CpfOperadorResponsavel = solicitacao.cpfOperadorResponsavel;
+                                renaveEntradasEstoqueIte.NomeCliente = solicitacao.clienteDaIte.nome;
+                                renaveEntradasEstoqueIte.Cep = solicitacao.clienteDaIte.endereco.cep;
+                                renaveEntradasEstoqueIte.Logradouro = solicitacao.clienteDaIte.endereco.logradouro;
+                                renaveEntradasEstoqueIte.Bairro = solicitacao.clienteDaIte.endereco.bairro;
+                                renaveEntradasEstoqueIte.Siafi = solicitacao.clienteDaIte.endereco.codigoMunicipio;
+                                renaveEntradasEstoqueIte.Numero = solicitacao.clienteDaIte.endereco.numero;
+                                renaveEntradasEstoqueIte.Complemento = solicitacao.clienteDaIte.endereco.complemento;
+                                renaveEntradasEstoqueIte.Email = solicitacao.clienteDaIte.email;
+                                renaveEntradasEstoqueIte.NumeroDocumento = solicitacao.clienteDaIte.numeroDocumento;
+                                renaveEntradasEstoqueIte.TipoDocumento = solicitacao.clienteDaIte.tipoDocumento;
+                                renaveEntradasEstoqueIte.ValorProduto = solicitacao.valorProduto;
+                                renaveEntradasEstoqueIte.QuilometragemHodometro = solicitacao.quilometragemHodometro;
+                                renaveEntradasEstoqueIte.DataMedicaoHodometro = solicitacao.dataHoraMedicaoHodometro;
+                                renaveEntradasEstoqueIte.CodigoClienteMontadora = solicitacao.codigoClienteMontadora;
+
+                                DateTime dataHoraAtual = DateTime.Now;
+                                string dataHoraFormatada = dataHoraAtual.ToString("yyyy-MM-dd HH:mm:ss");
+                                renaveEntradasEstoqueIte.DataEntradaEstoque = dataHoraFormatada;
+
+                                var estoqueBusiness = new RenaveOperacoesBusiness();
+
+                                if (estoqueBusiness.EntradasEstoqueIte(renaveEntradasEstoqueIte))
+                                {
+                                    return Request.CreateResponse(retorno);
+                                }
+                                else
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Entrada de estoque efetuada com sucesso. Erro ao Gravar log.");
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                return Request.CreateResponse(ex);
+                            }
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {

@@ -305,7 +305,7 @@ namespace Renave.Anfir.Controllers
                             var retorno = JsonConvert.DeserializeObject<EstoqueMontadora>(jsonString.Result);
 
                             //Efetua Insert no Banco de Dados
-                            var renaveOperacoes = new RenaveOperacoe();
+                            var renaveOperacoes = new RenaveOperacoes();
 
                             renaveOperacoes.ID_Empresa = solicitacaoSaidaEstoqueZeroKmPelaMontadora.ID_Empresa;
                             renaveOperacoes.Chassi = retorno.chassi;

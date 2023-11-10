@@ -57,8 +57,8 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
 
-                            //Insert no banco
-                            var renaveOperacoes = new RenaveOperacoe();
+                            //Insert DB
+                            var renaveOperacoes = new RenaveOperacoes();
 
                             renaveOperacoes.ID_Empresa = solicitacao.ID_Empresa;
                             renaveOperacoes.Chassi = retorno.chassi;

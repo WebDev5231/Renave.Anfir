@@ -26,6 +26,7 @@ namespace Renave.Anfir.Controllers
         {
             try
             {
+
                 var url = basePath + "/api/ite/autorizacoes-transferencias-estoque-vindo-de-ite";
 
                 var certificadoBusiness = new CertificadoBusiness();
@@ -57,28 +58,34 @@ namespace Renave.Anfir.Controllers
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<Estoque>(jsonString.Result);
 
-                            //INSERT DATABASE
-                            var renaveOperacoes = new RenaveOperacoe();
-
-                            renaveOperacoes.ID_Empresa = envioAutorizacao.ID_Empresa;
-                            renaveOperacoes.Chassi = retorno.chassi;
-                            renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cpfOperadorResponsavel;
-                            renaveOperacoes.CnpjEstabelecimentoDestino = envioAutorizacao.cnpjEstabelecimentoDestino;
-                            renaveOperacoes.SaidaOuTransferencia = "Transferencia";
-                            renaveOperacoes.IteOuMontadora = "I";
-                            renaveOperacoes.DataHora = DateTime.Now;
-
-                            var estoqueBusiness = new RenaveOperacoesBusiness();
-
-                            if (estoqueBusiness.TransferenciaEstoqueIte(renaveOperacoes))
+                            try
                             {
-                                return Request.CreateResponse(retorno);
-                            }
-                            else
-                            {
-                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Transferencia realizada com sucesso, Erro ao gravar log.");
-                            }
+                                //INSERT DATABASE
+                                var renaveOperacoes = new RenaveOperacoes();
 
+                                renaveOperacoes.ID_Empresa = envioAutorizacao.ID_Empresa;
+                                renaveOperacoes.Chassi = retorno.chassi;
+                                renaveOperacoes.CpfOperadorResponsavel = envioAutorizacao.cpfOperadorResponsavel;
+                                renaveOperacoes.CnpjEstabelecimentoDestino = envioAutorizacao.cnpjEstabelecimentoDestino;
+                                renaveOperacoes.SaidaOuTransferencia = "Transferencia";
+                                renaveOperacoes.IteOuMontadora = "I";
+                                renaveOperacoes.DataHora = DateTime.Now;
+
+                                var estoqueBusiness = new RenaveOperacoesBusiness();
+
+                                if (estoqueBusiness.TransferenciaEstoqueIte(renaveOperacoes))
+                                {
+                                    return Request.CreateResponse(retorno);
+                                }
+                                else
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Transferencia realizada com sucesso, Erro ao gravar log.");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+                            }
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {

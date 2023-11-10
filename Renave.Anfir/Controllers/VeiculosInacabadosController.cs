@@ -62,7 +62,7 @@ namespace Renave.Anfir.Controllers
                             var retorno = JsonConvert.DeserializeObject<AutorizacaoTransferenciaMontadora>(jsonString.Result);
 
                             //INSERT DATABASE
-                            var renaveOperacoes = new RenaveOperacoe();
+                            var renaveOperacoes = new RenaveOperacoes();
 
                             renaveOperacoes.ID_Empresa = envioAutorizacaoTransferenciaParaItePelaMontadora.ID_Empresa;
                             renaveOperacoes.Chassi = retorno.chassi;

@@ -51,7 +51,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EmpresaRenaveCertificadoData.cs" />
-    <Compile Include="Repository\RenaveSaidaEstoqueData.cs" />
+    <Compile Include="Repository\RenaveOperacoesData.cs" />
     <Compile Include="CertificateData.cs" />
   </ItemGroup>
   <ItemGroup>

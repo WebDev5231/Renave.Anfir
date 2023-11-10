@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Renave.Anfir.Data.Repository
 {
-    public class RenaveSaidaEstoqueData
+    public class RenaveOperacoesData
     {
-        public bool Insert(RenaveOperacoe renaveOperacoesEstoque)
+        public bool InsertRenaveOperacoes(RenaveOperacoes renaveOperacoesEstoque)
         {
             using (var cn = new SqlConnection(Database.ConnectionString))
             {
@@ -19,6 +19,16 @@ namespace Renave.Anfir.Data.Repository
 
                 return true;
             }
+        }
+
+        public bool InsertEntradaEstoqueIte(EntradasEstoqueIte InsertEntradaEstoqueIte)
+        {
+            using (var cn = new SqlConnection(Database.ConnectionString))
+            {
+                var retorno = cn.Insert(InsertEntradaEstoqueIte);
+
+                return true;
+              }
         }
     }
 }
