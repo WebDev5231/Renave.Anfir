@@ -12,6 +12,6 @@ namespace Renave.Anfir.Models
         public string cpfOperadorResponsavel { get; set; }
         public int idEstoqueOrigem { get; set; }
         public bool paraCancelamentoDeTransferencia { get; set; }
-        public int valorProduto { get; set; }
+        public double? valorProduto { get; set; }
     }
 }

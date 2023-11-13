@@ -17,6 +17,6 @@ namespace Renave.Anfir.Models
         public string dataTransferenciaEstoque { get; set; }
         public long idAutorizacao { get; set; }
         public long quilometragemHodometro { get; set; }
-        public decimal valorProduto { get; set; }
+        public double? valorProduto { get; set; }
     }
 }
