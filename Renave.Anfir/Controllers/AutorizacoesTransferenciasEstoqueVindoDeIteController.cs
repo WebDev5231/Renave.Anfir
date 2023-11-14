@@ -53,16 +53,16 @@ namespace Renave.Anfir.Controllers
 
                     using (var response = await client.SendAsync(request))
                     {
+                        var teste = envioAutorizacao.valorProduto;
+
                         if (response.IsSuccessStatusCode)
                         {
                             var jsonString = response.Content.ReadAsStringAsync();
                             var retorno = JsonConvert.DeserializeObject<Estoque>(jsonString.Result);
 
-                            var teste = envioAutorizacao.valorProduto;
-
                             try
                             {
-                                //INSERT DATABASE
+                                //INSERT DBO
                                 var renaveOperacoes = new RenaveOperacoes();
 
                                 renaveOperacoes.ID_Empresa = envioAutorizacao.ID_Empresa;
