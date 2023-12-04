@@ -10,11 +10,11 @@ namespace Renave.Anfir.Model
     public class EntradasEstoqueIte
     {
         [Key]
-        public short Id { get; set; }
+        public long id { get; set; }
         public long ID_Empresa { get; set; }
-        public string Chassi { get; set; }
+        public string chassi { get; set; }
         public string ChaveNotaFiscalRemessa { get; set; }
-        public string CpfOperadorResponsavel { get; set; }
+        public string cpfOperadorResponsavel { get; set; }
         public string NomeCliente { get; set; }
         public string Cep { get; set; }
         public string Logradouro { get; set; }
@@ -30,5 +30,24 @@ namespace Renave.Anfir.Model
         public DateTime DataMedicaoHodometro { get; set; }
         public string CodigoClienteMontadora { get; set; }
         public string DataEntradaEstoque { get; set; }
+        public string estado { get; set; }
+        public bool leasingVeiculoInacabado { get; set; }
+        public object dataHoraRegistro { get; set; }
+        public EntradaEstoque entradaEstoque { get; set; }
+    }
+
+    public class EntradaEstoque
+    {
+        public string cpfOperadorResponsavel { get; set; }
+        public DateTimeOffset? dataHora { get; set; }
+        public object chaveNotaFiscalEntrada { get; set; }
+        public object dataHoraRegistro { get; set; }
+        public object chaveNotaFiscalSaida { get; set; }
+        public object dataHoraEnvioNotaFiscalEntrada { get; set; }
+        public object chaveNotaFiscalServicoEntrada { get; set; }
+        public object dataHoraEnvioNotaFiscalServicoEntrada { get; set; }
+        public string chaveNotaFiscalRemessaEntrada { get; set; }
+        public DateTimeOffset? dataHoraEnvioNotaFiscalRemessaEntrada { get; set; }
+        public long? numeroTermoEntradaEstoque { get; set; }
     }
 }

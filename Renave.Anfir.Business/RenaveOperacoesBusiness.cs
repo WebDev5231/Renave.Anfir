@@ -102,5 +102,16 @@ namespace Renave.Anfir.Business
 
             return false;
         }
+
+        //TESTAR
+        public List<EntradasEstoqueIte> GetEntradasEstoqueIte(int idEmpresa)
+        {
+            var renaveEntradaEstoqueIteData = new RenaveOperacoesData();
+
+            var entradasEstoqueIteList = renaveEntradaEstoqueIteData.SelectEntradasEstoqueIte(idEmpresa);
+
+            return entradasEstoqueIteList;
+        }
+
     }
 }

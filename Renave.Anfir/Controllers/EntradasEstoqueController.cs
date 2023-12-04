@@ -64,9 +64,9 @@ namespace Renave.Anfir.Controllers
                                 var renaveEntradasEstoqueIte = new EntradasEstoqueIte();
 
                                 renaveEntradasEstoqueIte.ID_Empresa = solicitacao.ID_Empresa;
-                                renaveEntradasEstoqueIte.Chassi = solicitacao.chassi;
+                                renaveEntradasEstoqueIte.chassi = solicitacao.chassi;
                                 renaveEntradasEstoqueIte.ChaveNotaFiscalRemessa = solicitacao.chaveNotaFiscalRemessa;
-                                renaveEntradasEstoqueIte.CpfOperadorResponsavel = solicitacao.cpfOperadorResponsavel;
+                                renaveEntradasEstoqueIte.cpfOperadorResponsavel = solicitacao.cpfOperadorResponsavel;
                                 renaveEntradasEstoqueIte.NomeCliente = solicitacao.clienteDaIte.nome;
                                 renaveEntradasEstoqueIte.Cep = solicitacao.clienteDaIte.endereco.cep;
                                 renaveEntradasEstoqueIte.Logradouro = solicitacao.clienteDaIte.endereco.logradouro;

@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Renave.Anfir.Model;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,33 @@ namespace Renave.Anfir.Data.Repository
                 var retorno = cn.Insert(InsertEntradaEstoqueIte);
 
                 return true;
-              }
+            }
         }
+
+        //TESTAR
+        public List<EntradasEstoqueIte> SelectEntradasEstoqueIte(int ID_Empresa)
+        {
+            using (var cn = new SqlConnection(Database.ConnectionString))
+            {
+                string query = @"SELECT * FROM EntradasEstoqueIte WHERE ID_Empresa = @ID_Empresa";
+                try
+                {
+                    var entradasEstoqueIteList = cn.Query<EntradasEstoqueIte>(query, new { ID_Empresa }).ToList();
+
+                    if (entradasEstoqueIteList == null || entradasEstoqueIteList.Count == 0)
+                    {
+                        return new List<EntradasEstoqueIte>();
+                    }
+
+                    return entradasEstoqueIteList;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao buscar os dados do Cliente: {ex.Message}");
+                    throw;
+                }
+            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
+using Renave.Anfir.Model;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -43,22 +44,90 @@ namespace Renave.Anfir.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var jsonString = response.Content.ReadAsStringAsync();
+                        if (estadoEstoque == "CONFIRMADO")
+                        {
+                            var dadosEntradasEstoqueIte = new RenaveOperacoesBusiness();
+                            var dataEntradasEstoqueIte = dadosEntradasEstoqueIte.GetEntradasEstoqueIte(ID_Empresa);
 
-                        var retorno = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
-                        return Request.CreateResponse(retorno);
+                            var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
 
-                    }
-                    else if (response.StatusCode == (HttpStatusCode)422)
-                    {
-                        var jsonString = response.Content.ReadAsStringAsync();
-                        var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+                            var jsonString = response.Content.ReadAsStringAsync();
+                            var dadosEstoque = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
 
-                        return Request.CreateResponse((HttpStatusCode)422, retorno);
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
+                            var dadosCompletos = new List<EntradasEstoqueIte>();
+                            var chassisNaoEncontrados = new List<Estoque>();
+
+                            if (dadosCompletos != null)
+                            {
+                                foreach (var estoque in dadosEstoque)
+                                {
+                                    if (mapaChassiCliente.TryGetValue(estoque.chassi, out var dadosCliente))
+                                    {
+                                        var dadosCompletosItem = new EntradasEstoqueIte();
+
+                                        dadosCompletosItem.chassi = estoque.chassi;
+                                        dadosCompletosItem.NomeCliente = dadosCliente.NomeCliente;
+                                        dadosCompletosItem.Logradouro = dadosCliente.Logradouro;
+                                        dadosCompletosItem.Bairro = dadosCliente.Bairro;
+                                        dadosCompletosItem.Numero = dadosCliente.Numero;
+                                        dadosCompletosItem.Complemento = dadosCliente.Complemento;
+                                        dadosCompletosItem.Cep = dadosCliente.Cep;
+                                        dadosCompletosItem.Siafi = dadosCliente.Siafi;
+                                        dadosCompletosItem.ValorProduto = dadosCliente.ValorProduto;
+                                        dadosCompletosItem.Email = dadosCliente.Email;
+                                        dadosCompletosItem.NumeroDocumento = dadosCliente.NumeroDocumento;
+                                        dadosCompletosItem.TipoDocumento = dadosCliente.TipoDocumento;
+                                        dadosCompletosItem.QuilometragemHodometro = dadosCliente.QuilometragemHodometro;
+                                        dadosCompletosItem.cpfOperadorResponsavel = dadosCliente.cpfOperadorResponsavel;
+                                        dadosCompletosItem.ID_Empresa = dadosCliente.ID_Empresa;
+                                        dadosCompletosItem.CodigoClienteMontadora = dadosCliente.CodigoClienteMontadora;
+                                        dadosCompletosItem.DataEntradaEstoque = dadosCliente.DataEntradaEstoque;
+
+                                        dadosCompletosItem.id = estoque.id;
+                                        dadosCompletosItem.estado = estoque.estado;
+                                        dadosCompletosItem.dataHoraRegistro = estoque.entradaEstoque.dataHoraRegistro;
+                                        dadosCompletosItem.leasingVeiculoInacabado = estoque.leasingVeiculoInacabado;
+
+                                        dadosCompletos.Add(dadosCompletosItem);
+                                    }
+                                    else
+                                    {
+                                        chassisNaoEncontrados.Add(estoque);
+                                    }
+                                }
+
+                                var resposta = new
+                                {
+                                    DadosCompletos = dadosCompletos,
+                                    ChassisNaoEncontrados = chassisNaoEncontrados
+                                };
+
+                                return Request.CreateResponse(resposta);
+                            }
+                        }
+                        else if (estadoEstoque == "FINALIZADO")
+                        {
+                            var jsonString = await response.Content.ReadAsStringAsync();
+                            var dadosEstoque = JsonConvert.DeserializeObject<List<Estoque>>(jsonString);
+
+                            var resposta = new
+                            {
+                                DadosCompletos = dadosEstoque
+                            };
+
+                            return Request.CreateResponse(resposta);
+                        }
+                        else if (response.StatusCode == (HttpStatusCode)422)
+                        {
+                            var jsonString = response.Content.ReadAsStringAsync();
+                            var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+
+                            return Request.CreateResponse((HttpStatusCode)422, retorno);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
+                        }
                     }
                 }
             }
@@ -66,6 +135,8 @@ namespace Renave.Anfir.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
+
+            return Request.CreateResponse();
         }
 
         [Route("montadora/estoques")]
