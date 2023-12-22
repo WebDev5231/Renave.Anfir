@@ -81,6 +81,8 @@ namespace Renave.Anfir.Controllers
                                 renaveEntradasEstoqueIte.QuilometragemHodometro = solicitacao.quilometragemHodometro;
                                 renaveEntradasEstoqueIte.DataMedicaoHodometro = solicitacao.dataHoraMedicaoHodometro;
                                 renaveEntradasEstoqueIte.CodigoClienteMontadora = solicitacao.codigoClienteMontadora;
+                                renaveEntradasEstoqueIte.LeasingVeiculosInacabados = false;
+                                renaveEntradasEstoqueIte.estado = "CONFIRMADO";
 
                                 DateTime dataHoraAtual = DateTime.Now;
                                 string dataHoraFormatada = dataHoraAtual.ToString("yyyy-MM-dd HH:mm:ss");

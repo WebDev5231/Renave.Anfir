@@ -85,8 +85,7 @@ namespace Renave.Anfir.Controllers
 
                                         dadosCompletosItem.id = estoque.id;
                                         dadosCompletosItem.estado = estoque.estado;
-                                        dadosCompletosItem.dataHoraRegistro = estoque.entradaEstoque.dataHoraRegistro;
-                                        dadosCompletosItem.leasingVeiculoInacabado = estoque.leasingVeiculoInacabado;
+                                        dadosCompletosItem.LeasingVeiculosInacabados = estoque.leasingVeiculoInacabado;
 
                                         dadosCompletos.Add(dadosCompletosItem);
                                     }
