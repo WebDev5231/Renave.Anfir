@@ -49,7 +49,7 @@ namespace Renave.Anfir.Controllers
                             var dadosEntradasEstoqueIte = new RenaveOperacoesBusiness();
                             var dataEntradasEstoqueIte = dadosEntradasEstoqueIte.GetEntradasEstoqueIte(ID_Empresa);
 
-                            var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
+                            var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
 
                             var jsonString = response.Content.ReadAsStringAsync();
                             var dadosEstoque = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
@@ -81,6 +81,7 @@ namespace Renave.Anfir.Controllers
                                         dadosCompletosItem.cpfOperadorResponsavel = dadosCliente.cpfOperadorResponsavel;
                                         dadosCompletosItem.ID_Empresa = dadosCliente.ID_Empresa;
                                         dadosCompletosItem.CodigoClienteMontadora = dadosCliente.CodigoClienteMontadora;
+
                                         dadosCompletosItem.DataEntradaEstoque = dadosCliente.DataEntradaEstoque;
 
                                         dadosCompletosItem.id = estoque.id;
