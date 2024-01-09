@@ -87,7 +87,6 @@ namespace Renave.Anfir.Controllers
 
                                         dadosCompletosItem.DataEntradaEstoque = dadosCliente.DataEntradaEstoque;
 
-                                        //dadosCompletosItem.DataEntradaEstoque = DateTime.ParseExact(dadosCliente.DataEntradaEstoque, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy HH:mm:ss").Replace('/\dg');
                                         dadosCompletosItem.id = estoque.id;
                                         dadosCompletosItem.estado = estoque.estado;
                                         dadosCompletosItem.LeasingVeiculosInacabados = estoque.leasingVeiculoInacabado;
