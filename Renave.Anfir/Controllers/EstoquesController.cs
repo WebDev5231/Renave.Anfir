@@ -5,6 +5,7 @@ using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -49,7 +50,9 @@ namespace Renave.Anfir.Controllers
                             var dadosEntradasEstoqueIte = new RenaveOperacoesBusiness();
                             var dataEntradasEstoqueIte = dadosEntradasEstoqueIte.GetEntradasEstoqueIte(ID_Empresa);
 
-                            var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
+                            var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
+
+                            //var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
 
                             var jsonString = response.Content.ReadAsStringAsync();
                             var dadosEstoque = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
@@ -84,6 +87,7 @@ namespace Renave.Anfir.Controllers
 
                                         dadosCompletosItem.DataEntradaEstoque = dadosCliente.DataEntradaEstoque;
 
+                                        //dadosCompletosItem.DataEntradaEstoque = DateTime.ParseExact(dadosCliente.DataEntradaEstoque, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy HH:mm:ss").Replace('/\dg');
                                         dadosCompletosItem.id = estoque.id;
                                         dadosCompletosItem.estado = estoque.estado;
                                         dadosCompletosItem.LeasingVeiculosInacabados = estoque.leasingVeiculoInacabado;
