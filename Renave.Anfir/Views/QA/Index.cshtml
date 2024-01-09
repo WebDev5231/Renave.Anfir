@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Renave.Anfir"].ConnectionString;
+}
+
+<h2>QA Testes</h2>
+
+<p>Bem-vindo à página Index do QAController.</p>
+
+<input type="hidden" id="conexao" value="@connectionString" />
+
+<label for="login">Login:</label>
+<input type="text" id="login" name="login" required />
+
+<br />
+
+<label for="senha">Senha:</label>
+<input type="password" id="senha" name="senha" required />
+
+<br />
+<br />
+
+<textarea id="query" name="query"></textarea>
+
+<br />
+
+<button id="executarQuery">Executar Consulta</button>
+
+<br />
+<br />
+
+<div id="loading" style="display: none;">Carregando...</div>
+
+<div id="resultadoConsulta" style="margin-left: -32%;"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#executarQuery").click(function () {
+                var query = $("#query").val();
+                var conexao = $("#conexao").val();
+                var login = $("#login").val();
+                var senha = $("#senha").val();
+
+                $("#loading").show();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Renave/QA/ExecutarConsulta",
+                    data: { query: query, connectionString: conexao, username: login, password: senha },
+                    success: function (result) {
+                        debugger;
+                        displayResults(result);
+                        if (result.success == true) {
+                            $("#resultadoConsulta").append("<div class='alert alert-success'>" + result.successMessage + "</div>");
+
+                            alert("Query executada com sucesso. " + result.affectedRows + " linha(s) afetada(s).");
+                        }
+                    },
+
+                    error: function (error) {
+                        $("#resultadoConsulta").html("Erro ao executar a consulta: " + error.responseText);
+                    },
+                    complete: function () {
+                        $("#loading").hide();
+                    }
+                });
+
+            });
+
+            function displayResults(result) {
+                var table = "<table class='table table-bordered table-striped'><thead><tr>";
+
+                var columns = result.successMessage;
+
+                if (columns === undefined || columns === null) {
+                    columns = Object.keys(result[0]);
+                }
+
+                for (var i = 0; i < columns.length; i++) {
+                    table += "<th>" + columns[i] + "</th>";
+                }
+
+                table += "</tr></thead><tbody>";
+
+                if (result.length > 0) {
+                    for (var j = 0; j < result.length; j++) {
+                        table += "<tr>";
+                        for (var k = 0; k < columns.length; k++) {
+                            var columnName = columns[k];
+                            var cellValue = result[j][columnName];
+
+                            if (cellValue && typeof cellValue === 'object') {
+                                var key = cellValue.Key;
+                                var subValue = cellValue.Value;
+                                table += "<td>" + key + ": " + subValue + "</td>";
+                            } else {
+                                table += "<td>" + columnName + ": " + cellValue + "</td>";
+                            }
+                        }
+                        table += "</tr>";
+                    }
+                } else {
+                    table += "<tr><td colspan='" + columns.length + "'>Nenhum resultado encontrado</td></tr>";
+                }
+
+                table += "</tbody></table>";
+
+                $("#resultadoConsulta").html("");
+                $("#resultadoConsulta").html(table);
+            }
+
+        });
+    </script>
+}

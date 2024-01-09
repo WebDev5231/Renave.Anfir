@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.1.28\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
@@ -174,6 +177,7 @@
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PdfAtpvController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
     <Compile Include="Controllers\SaidasEstoqueController.cs" />
     <Compile Include="Controllers\TermoEntradaEstoqueController.cs" />
     <Compile Include="Controllers\TermoSaidaEstoqueController.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="Models\AutorizacaoTransferenciaMontadora.cs" />
     <Compile Include="Models\AutorizacaoTransferenciaRetorno.cs" />
     <Compile Include="Models\BeneficioTributarioJson.cs" />
+    <Compile Include="Models\Cadastro.cs" />
     <Compile Include="Models\CancelamentoEntrega.cs" />
     <Compile Include="Models\CancelamentoEstoque.cs" />
     <Compile Include="Models\CancelamentoSaidaEstoque.cs" />
@@ -289,11 +294,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\QA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="certificados\" />
-    <Folder Include="Views\TesteBanco\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
