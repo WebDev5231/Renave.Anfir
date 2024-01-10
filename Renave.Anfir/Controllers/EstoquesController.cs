@@ -50,15 +50,23 @@ namespace Renave.Anfir.Controllers
                             var dadosEntradasEstoqueIte = new RenaveOperacoesBusiness();
                             var dataEntradasEstoqueIte = dadosEntradasEstoqueIte.GetEntradasEstoqueIte(ID_Empresa);
 
-                            var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
+                            //var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
 
-                            //var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
+                            var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
 
                             var jsonString = response.Content.ReadAsStringAsync();
                             var dadosEstoque = JsonConvert.DeserializeObject<List<Estoque>>(jsonString.Result);
 
                             var dadosCompletos = new List<EntradasEstoqueIte>();
                             var chassisNaoEncontrados = new List<Estoque>();
+
+                            foreach (var item in dataEntradasEstoqueIte)
+                            {
+                                if (!mapaChassiCliente.ContainsKey(item.chassi))
+                                {
+                                    mapaChassiCliente.Add(item.chassi, item);
+                                }
+                            }
 
                             if (dadosCompletos != null)
                             {
