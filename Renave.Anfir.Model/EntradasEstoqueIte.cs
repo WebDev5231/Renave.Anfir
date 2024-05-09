@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Renave.Anfir.Model.Models;
 
 namespace Renave.Anfir.Model
 {
@@ -32,5 +33,6 @@ namespace Renave.Anfir.Model
         public string DataEntradaEstoque { get; set; }
         public string estado { get; set; }
         public bool LeasingVeiculosInacabados { get; set; }
+        public Veiculos VeiculoAcabado { get; set; }
     }
 }

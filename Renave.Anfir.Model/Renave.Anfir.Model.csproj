@@ -49,11 +49,16 @@
   <ItemGroup>
     <Compile Include="EmpresaRenaveCertificado.cs" />
     <Compile Include="EntradasEstoqueIte.cs" />
+    <Compile Include="Models\Restricao.cs" />
+    <Compile Include="Models\Veiculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenaveOperacoes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

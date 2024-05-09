@@ -183,7 +183,6 @@
     <Compile Include="Controllers\TermoSaidaEstoqueController.cs" />
     <Compile Include="Controllers\TransferenciasParaIteController.cs" />
     <Compile Include="Controllers\TransferenciasVindoDeIteParaIteController.cs" />
-    <Compile Include="Controllers\VeiculosController.cs" />
     <Compile Include="Controllers\VeiculosInacabadosController.cs" />
     <Compile Include="Controllers\VeiculosInacabadosMockController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +222,7 @@
     <Compile Include="Models\OrigemPorCancelamentoEstoque.cs" />
     <Compile Include="Models\PdfAtpv.cs" />
     <Compile Include="Models\RealizacaoEntrega.cs" />
+    <Compile Include="Models\EstoqueVeiculoStatus.cs" />
     <Compile Include="Models\Restricao.cs" />
     <Compile Include="Models\RestricoesVeiculo.cs" />
     <Compile Include="Models\SaidaEstoque.cs" />

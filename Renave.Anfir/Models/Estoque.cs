@@ -26,5 +26,6 @@ namespace Renave.Anfir.Models
         public bool estoqueEmIte { get; set; }
         public object idEstoqueGeradoPorTransferencia { get; set; }
         public object idEstoqueOrigemTransferencia { get; set; }
+        public Veiculo VeiculoAcabado { get; set; }
     }
 }

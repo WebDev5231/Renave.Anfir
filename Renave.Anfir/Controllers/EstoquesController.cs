@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Renave.Anfir.Business;
 using Renave.Anfir.Model;
+using Renave.Anfir.Model.Models;
 using Renave.Anfir.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Renave.Anfir.Controllers
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
 
         [Route("ite/estoques")]
-        public async Task<HttpResponseMessage> Get(int ID_Empresa, string chassi, string estadoEstoque, string placa)
+        public async Task<HttpResponseMessage> GetEstoqueIte(int ID_Empresa, string chassi, string estadoEstoque)
         {
             try
             {
@@ -38,7 +39,6 @@ namespace Renave.Anfir.Controllers
                 if (!string.IsNullOrEmpty(chassi))
                     url = basePath + "/api/ite/estoques?chassi=" + chassi + "&estadoEstoque=" + estadoEstoque;
 
-
                 using (var client = new HttpClient(handler))
                 {
                     var response = await client.GetAsync(url);
@@ -49,8 +49,6 @@ namespace Renave.Anfir.Controllers
                         {
                             var dadosEntradasEstoqueIte = new RenaveOperacoesBusiness();
                             var dataEntradasEstoqueIte = dadosEntradasEstoqueIte.GetEntradasEstoqueIte(ID_Empresa);
-
-                            //var mapaChassiCliente = dataEntradasEstoqueIte.ToDictionary(item => item.chassi);
 
                             var mapaChassiCliente = new Dictionary<string, EntradasEstoqueIte>();
 
@@ -92,9 +90,7 @@ namespace Renave.Anfir.Controllers
                                         dadosCompletosItem.cpfOperadorResponsavel = dadosCliente.cpfOperadorResponsavel;
                                         dadosCompletosItem.ID_Empresa = dadosCliente.ID_Empresa;
                                         dadosCompletosItem.CodigoClienteMontadora = dadosCliente.CodigoClienteMontadora;
-
                                         dadosCompletosItem.DataEntradaEstoque = dadosCliente.DataEntradaEstoque;
-
                                         dadosCompletosItem.id = estoque.id;
                                         dadosCompletosItem.estado = estoque.estado;
                                         dadosCompletosItem.LeasingVeiculosInacabados = estoque.leasingVeiculoInacabado;
@@ -107,13 +103,75 @@ namespace Renave.Anfir.Controllers
                                     }
                                 }
 
-                                var resposta = new
+                                var resposta = new EstoqueVeiculoStatus
                                 {
                                     DadosCompletos = dadosCompletos,
                                     ChassisNaoEncontrados = chassisNaoEncontrados
                                 };
 
-                                return Request.CreateResponse(resposta);
+                                List<Veiculo> veiculosAcabados = new List<Veiculo>();
+                                IEnumerable<string> chassisParaConsulta = resposta.DadosCompletos
+                                    .Select(item => item.chassi)
+                                    .Concat(resposta.ChassisNaoEncontrados.Select(item => item.chassi));
+
+                                if (!string.IsNullOrEmpty(chassi) && !chassisParaConsulta.Contains(chassi))
+                                {
+                                    chassisParaConsulta = chassisParaConsulta.Concat(new[] { chassi });
+                                }
+
+                                foreach (var chassiConsulta in chassisParaConsulta)
+                                {
+                                    try
+                                    {
+                                        var responseConsultarVeiculos = await ConsultarVeiculosAcabados(ID_Empresa, chassiConsulta);
+
+                                        if (responseConsultarVeiculos.IsSuccessStatusCode)
+                                        {
+                                            var jsonStringVeiculoAcabado = await responseConsultarVeiculos.Content.ReadAsStringAsync();
+                                            var veiculoAcabado = JsonConvert.DeserializeObject<Veiculo>(jsonStringVeiculoAcabado);
+
+                                            veiculosAcabados.Add(veiculoAcabado);
+                                        }
+                                        else if (responseConsultarVeiculos.StatusCode == (HttpStatusCode)422)
+                                        {
+                                            var jsonStringUnprocessable = await responseConsultarVeiculos.Content.ReadAsStringAsync();
+                                            var retornoUnprocessable = JsonConvert.DeserializeObject<ErroRetorno>(jsonStringUnprocessable);
+                                            return Request.CreateResponse((HttpStatusCode)422, retornoUnprocessable);
+                                        }
+                                        else
+                                        {
+                                            return Request.CreateResponse(responseConsultarVeiculos.StatusCode, await responseConsultarVeiculos.Content.ReadAsStringAsync());
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+                                    }
+                                }
+
+                                foreach (var veiculoAcabado in veiculosAcabados)
+                                {
+                                    var dadoCompleto = resposta.DadosCompletos.FirstOrDefault(c => c.chassi == veiculoAcabado.chassi);
+                                    if (dadoCompleto != null)
+                                    {
+                                        dadoCompleto.VeiculoAcabado = new Veiculos
+                                        {
+                                            chassi = veiculoAcabado.chassi,
+                                            placa = veiculoAcabado.placa,
+                                            renavam = veiculoAcabado.renavam,
+                                            restricoes = veiculoAcabado.restricoes.Select(r => new Model.Models.Restricao { codigoTipo = r.codigoTipo, tipo = r.tipo }).ToList(),
+                                            veiculoAcabado = veiculoAcabado.veiculoAcabado
+                                        };
+                                    }
+
+                                    var chassiNaoEncontrado = resposta.ChassisNaoEncontrados.FirstOrDefault(c => c.chassi == veiculoAcabado.chassi);
+                                    if (chassiNaoEncontrado != null)
+                                    {
+                                        chassiNaoEncontrado.VeiculoAcabado = veiculoAcabado; 
+                                    }
+                                } 
+                                
+                                return Request.CreateResponse(HttpStatusCode.OK, resposta);
                             }
                         }
                         else if (estadoEstoque == "FINALIZADO")
@@ -151,7 +209,7 @@ namespace Renave.Anfir.Controllers
         }
 
         [Route("montadora/estoques")]
-        public async Task<HttpResponseMessage> GetMontadora(int ID_Empresa, string chassi, string estadoEstoque, string placa)
+        public async Task<HttpResponseMessage> GetEstoqueMontadora(int ID_Empresa, string chassi, string estadoEstoque)
         {
             try
             {
@@ -191,6 +249,47 @@ namespace Renave.Anfir.Controllers
                     else
                     {
                         return Request.CreateResponse(response.StatusCode, response.Content.ReadAsStringAsync());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("ite/veiculos")]
+        public async Task<HttpResponseMessage> ConsultarVeiculosAcabados(int ID_Empresa, string chassiConsulta)
+        {
+            try
+            {
+                var certificadoBusiness = new CertificadoBusiness();
+                var handler = certificadoBusiness.GetHandler(ID_Empresa);
+
+                var url2 = basePath + "/api/ite/veiculos?chassi=" + chassiConsulta;
+
+                using (var clientVeiculos = new HttpClient(handler))
+                {
+                    var responseVeiculo = await clientVeiculos.GetAsync(url2);
+
+                    if (responseVeiculo.IsSuccessStatusCode)
+                    {
+                        var jsonStringVeiculoAcabado = await responseVeiculo.Content.ReadAsStringAsync();
+                        var veiculoAcabado = JsonConvert.DeserializeObject<Veiculo>(jsonStringVeiculoAcabado);
+
+                        return Request.CreateResponse(HttpStatusCode.OK, veiculoAcabado);
+                    }
+                    else if (responseVeiculo.StatusCode == (HttpStatusCode)422)
+                    {
+                        var jsonString = responseVeiculo.Content.ReadAsStringAsync();
+                        var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+
+                        return Request.CreateResponse((HttpStatusCode)422, retorno);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(responseVeiculo.StatusCode, responseVeiculo.Content.ReadAsStringAsync());
                     }
                 }
             }

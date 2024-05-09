@@ -95,15 +95,17 @@ namespace Renave.Anfir.Business
         {
             var renaveEntradaEstoqueIteData = new RenaveOperacoesData();
 
-            if (renaveEntradaEstoqueIteData.InsertEntradaEstoqueIte(renaveEntradaEstoqueIte))
+            try
             {
-                return true;
+                return renaveEntradaEstoqueIteData.InsertEntradaEstoqueIte(renaveEntradaEstoqueIte);
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro durante a inserção da entrada de estoque: {ex.Message}");
+                return false;
+            }
         }
 
-        //TESTAR
         public List<EntradasEstoqueIte> GetEntradasEstoqueIte(int idEmpresa)
         {
             var renaveEntradaEstoqueIteData = new RenaveOperacoesData();

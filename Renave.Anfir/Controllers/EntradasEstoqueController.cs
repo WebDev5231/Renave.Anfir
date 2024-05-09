@@ -60,7 +60,6 @@ namespace Renave.Anfir.Controllers
 
                             try
                             {
-                                //Insert DBO
                                 var renaveEntradasEstoqueIte = new EntradasEstoqueIte();
 
                                 renaveEntradasEstoqueIte.ID_Empresa = solicitacao.ID_Empresa;
