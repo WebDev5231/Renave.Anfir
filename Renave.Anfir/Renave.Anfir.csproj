@@ -240,6 +240,7 @@
     <Compile Include="Models\TransferenciaVindoDeIteParaIteSolicitacao.cs" />
     <Compile Include="Models\TransferenciaEstoqueParaIteSolicitacao.cs" />
     <Compile Include="Models\TermoEntradaEstoque.cs" />
+    <Compile Include="Models\TransformadoCancelamento.cs" />
     <Compile Include="Models\Veiculo.cs" />
     <Compile Include="Models\VeiculoZeroKmPendenteEntradaEstoque.cs" />
     <Compile Include="Models\Vendedor.cs" />
