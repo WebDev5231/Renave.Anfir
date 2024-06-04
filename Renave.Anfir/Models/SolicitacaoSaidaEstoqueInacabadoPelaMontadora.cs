@@ -17,5 +17,6 @@ namespace Renave.Anfir.Models
         public long idEstoque { get; set; }
         public string tipoBeneficioTributario { get; set; }
         public double valorVenda { get; set; }
+        public bool leasingVeiculoInacabado { get; set; }
     }
 }

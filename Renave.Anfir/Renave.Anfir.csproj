@@ -183,7 +183,6 @@
     <Compile Include="Controllers\TermoSaidaEstoqueController.cs" />
     <Compile Include="Controllers\TransferenciasParaIteController.cs" />
     <Compile Include="Controllers\TransferenciasVindoDeIteParaIteController.cs" />
-    <Compile Include="Controllers\VeiculosInacabadosController.cs" />
     <Compile Include="Controllers\VeiculosInacabadosMockController.cs" />
     <Compile Include="Controllers\VeiculosTransformadosITEController.cs" />
     <Compile Include="Global.asax.cs">
