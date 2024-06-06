@@ -2,9 +2,7 @@
 using Renave.Anfir.Business;
 using Renave.Anfir.Models;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,9 +11,6 @@ using System.Web.Http;
 
 namespace Renave.Anfir.Controllers
 {
-    /// <summary>
-    /// Transferir estoque vindo de ITE para ITE solicitante.
-    /// </summary>
     public class TransferenciasVindoDeIteParaIteController : ApiController
     {
         private string basePath = ConfigurationManager.AppSettings["SerproRenaveApiUrl"];
@@ -38,14 +33,10 @@ namespace Renave.Anfir.Controllers
                     {
                         Method = HttpMethod.Post,
                         RequestUri = new Uri(url),
-                        Headers = {
-                        { "Accept", "application/json" },
-                    },
+                        Headers = { { "Accept", "application/json" } },
                         Content = new StringContent(json)
                         {
-                            Headers = {
-                            ContentType = new MediaTypeHeaderValue("application/json")
-                            }
+                            Headers = { ContentType = new MediaTypeHeaderValue("application/json") }
                         }
                     };
 
@@ -53,21 +44,21 @@ namespace Renave.Anfir.Controllers
                     {
                         if (response.IsSuccessStatusCode)
                         {
-                            var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString.Result);
+                            var jsonString = await response.Content.ReadAsStringAsync();
+                            var retorno = JsonConvert.DeserializeObject<EstoqueRetorno>(jsonString);
 
                             return Request.CreateResponse(retorno);
                         }
                         else if (response.StatusCode == (HttpStatusCode)422)
                         {
-                            var jsonString = response.Content.ReadAsStringAsync();
-                            var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString.Result);
+                            var jsonString = await response.Content.ReadAsStringAsync();
+                            var retorno = JsonConvert.DeserializeObject<ErroRetorno>(jsonString);
 
                             return Request.CreateResponse((HttpStatusCode)422, retorno);
                         }
                         else
                         {
-                            var jsonString = response.Content.ReadAsStringAsync();
+                            var jsonString = await response.Content.ReadAsStringAsync();
                             return Request.CreateResponse(response.StatusCode, jsonString);
                         }
                     }
