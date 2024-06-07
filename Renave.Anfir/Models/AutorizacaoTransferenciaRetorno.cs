@@ -25,5 +25,7 @@ namespace Renave.Anfir.Models
         public long? idEstoqueGerado { get; set; }
         public object dataHoraCancelamento { get; set; }
         public object cpfOperadorResponsavelCancelamento { get; set; }
+        public bool? inacabadoNoPrimeiroEstoque { get; set; }  // Propriedade adicionada
+        public bool? paraIte { get; set; }  // Propriedade adicionada
     }
 }
