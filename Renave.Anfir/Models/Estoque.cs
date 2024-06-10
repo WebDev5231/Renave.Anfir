@@ -13,6 +13,7 @@ namespace Renave.Anfir.Models
         public object numeroCrv { get; set; }
         public object placa { get; set; }
         public Boolean leasingVeiculoInacabado { get; set; }
+        public Boolean inacabadoNoPrimeiroEstoque { get; set; }
         public object renavam { get; set; }
         public string chassi { get; set; }
         public object tipoCrv { get; set; }
