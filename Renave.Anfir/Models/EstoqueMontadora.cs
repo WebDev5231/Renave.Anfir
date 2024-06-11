@@ -13,7 +13,7 @@ namespace Renave.Anfir.Models
         public Comprador comprador { get; set; }
         public string codigoSegurancaCrv { get; set; }
         public Boolean leasingVeiculoInacabado { get; set; }
-        public Boolean inacabadoNoPrimeiroEstoque { get; set; }
+        public Boolean? inacabadoNoPrimeiroEstoque { get; set; }
         public DateTime dataHoraMedicaoHodometro { get; set; }
         public EntradaEstoque entradaEstoque { get; set; }
         public List<Entrega> entregas { get; set; }
