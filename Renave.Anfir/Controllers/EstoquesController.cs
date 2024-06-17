@@ -167,10 +167,10 @@ namespace Renave.Anfir.Controllers
                                     var chassiNaoEncontrado = resposta.ChassisNaoEncontrados.FirstOrDefault(c => c.chassi == veiculoAcabado.chassi);
                                     if (chassiNaoEncontrado != null)
                                     {
-                                        chassiNaoEncontrado.VeiculoAcabado = veiculoAcabado; 
+                                        chassiNaoEncontrado.VeiculoAcabado = veiculoAcabado;
                                     }
-                                } 
-                                
+                                }
+
                                 return Request.CreateResponse(HttpStatusCode.OK, resposta);
                             }
                         }
