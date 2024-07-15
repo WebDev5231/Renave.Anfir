@@ -9,7 +9,6 @@ namespace Renave.Anfir.Models
     {
         public int ID_Empresa { get; set; }
         public string chaveNotaFiscalRemessa { get; set; }
-        public string codigoClienteMontadora { get; set; }
         public string codigoClienteMontadoraParaAlteracao { get; set; }
         public string codigoClienteMontadoraParaImplementacao { get; set; }
         public string cpfOperadorResponsavel { get; set; }
