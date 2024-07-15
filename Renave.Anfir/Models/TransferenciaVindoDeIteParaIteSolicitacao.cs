@@ -12,7 +12,7 @@ namespace Renave.Anfir.Models
         public string chaveNotaFiscalRemessa { get; set; }
         public string chaveNotaFiscalServico { get; set; }
         public string codigoClienteMontadoraParaAlteracao { get; set; }
-        public string codigoClienteMontadoraParaImplementacao { get; set; }
+        public string codigoClienteMontadoraParaComplementacao { get; set; }
         public string cpfOperadorResponsavel { get; set; }
         public DateTime dataHoraMedicaoHodometro { get; set; }
         public string dataTransferenciaEstoque { get; set; }
