@@ -15,6 +15,6 @@ namespace Renave.Anfir.Models
         public string dataVenda { get; set; }
         public string emailEstabelecimento { get; set; }
         public long idEstoque { get; set; }
-        public long valorVenda { get; set; }
+        public decimal valorVenda { get; set; }
     }
 }
