@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -69,7 +70,7 @@ namespace Renave.Anfir.Controllers
                                 renaveEntradasEstoqueIte.NomeCliente = solicitacao.clienteDaIte.nome;
                                 renaveEntradasEstoqueIte.Cep = solicitacao.clienteDaIte.endereco.cep;
                                 renaveEntradasEstoqueIte.Logradouro = solicitacao.clienteDaIte.endereco.logradouro;
-                                renaveEntradasEstoqueIte.Bairro = solicitacao.clienteDaIte.endereco.bairro;
+                                renaveEntradasEstoqueIte.Bairro = Regex.Replace(solicitacao.clienteDaIte.endereco.bairro, @"[^\w\sáéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]", "");
                                 renaveEntradasEstoqueIte.Siafi = solicitacao.clienteDaIte.endereco.codigoMunicipio;
                                 renaveEntradasEstoqueIte.Numero = solicitacao.clienteDaIte.endereco.numero;
                                 renaveEntradasEstoqueIte.Complemento = solicitacao.clienteDaIte.endereco.complemento;
