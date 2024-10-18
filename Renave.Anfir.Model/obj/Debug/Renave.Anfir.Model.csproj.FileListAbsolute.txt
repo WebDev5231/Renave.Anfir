@@ -1,0 +1,11 @@
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Renave.Anfir.Model.dll
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Renave.Anfir.Model.pdb
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Dapper.Contrib.dll
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Dapper.dll
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Dapper.xml
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\bin\Debug\Dapper.Contrib.xml
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\obj\Debug\Renave.Anfir.Model.csproj.AssemblyReference.cache
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\obj\Debug\Renave.Anfir.Model.csproj.CoreCompileInputs.cache
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\obj\Debug\Renave.Anfir.Model.csproj.CopyComplete
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\obj\Debug\Renave.Anfir.Model.dll
+C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir.Model\obj\Debug\Renave.Anfir.Model.pdb

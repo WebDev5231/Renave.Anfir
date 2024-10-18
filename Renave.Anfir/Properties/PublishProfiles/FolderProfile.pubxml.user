@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\vinic.DEV\Documents\GitHub\Renave.Anfir\Renave.Anfir\bin\app.publish\</_PublishTargetUrl>
+    <History>True|2024-09-04T12:18:00.8626091Z;True|2024-09-04T08:59:46.2943434-03:00;True|2024-08-09T13:51:23.7525302-03:00;True|2024-07-15T13:14:44.2936871-03:00;True|2024-07-15T11:47:10.3126349-03:00;True|2024-06-19T10:58:39.0040691-03:00;True|2024-06-11T10:17:46.0334280-03:00;True|2024-06-07T17:02:03.4818608-03:00;True|2024-06-07T16:32:19.2094459-03:00;True|2024-06-06T11:12:15.6821572-03:00;True|2024-06-06T09:45:52.2962670-03:00;True|2024-06-04T14:38:55.6623319-03:00;True|2024-06-04T10:06:39.2550090-03:00;True|2024-05-09T11:32:09.4193180-03:00;True|2024-05-09T11:18:18.8405288-03:00;True|2024-05-07T09:26:49.4674827-03:00;True|2024-01-10T09:48:35.5877036-03:00;True|2024-01-09T13:55:36.6068380-03:00;True|2024-01-09T13:17:31.4786894-03:00;True|2024-01-09T09:46:51.0361434-03:00;True|2024-01-09T08:54:38.7017296-03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/HelpPage/HelpPage.css">
+      <publishTime>01/08/2024 11:54:59</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/Api.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ApiGroup.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/CollectionModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ComplexTypeModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/DictionaryModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/EnumTypeModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/HelpPageApiModel.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ImageSample.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/InvalidSample.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/KeyValuePairModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ModelDescriptionLink.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/Parameters.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/Samples.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/SimpleTypeModelDescription.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/TextSample.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/Index.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/ResourceModel.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Shared/_Layout.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Web.config">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/_ViewStart.cshtml">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>10/09/2013 13:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>10/09/2013 13:29:20</publishTime>
+    </File>
+    <File Include="bin/Dapper.Contrib.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Dapper.dll">
+      <publishTime>02/01/2024 12:35:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 08:48:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/21/2019 22:06:16</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Business.dll">
+      <publishTime>04/09/2024 08:59:34</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Business.pdb">
+      <publishTime>04/09/2024 08:59:34</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Data.dll">
+      <publishTime>04/09/2024 08:59:33</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Data.pdb">
+      <publishTime>04/09/2024 08:59:33</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.dll">
+      <publishTime>09/04/2024 09:17:59</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Model.dll">
+      <publishTime>04/09/2024 08:59:33</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.Model.pdb">
+      <publishTime>04/09/2024 08:59:33</publishTime>
+    </File>
+    <File Include="bin/Renave.Anfir.pdb">
+      <publishTime>09/04/2024 09:17:59</publishTime>
+    </File>
+    <File Include="bin/Swashbuckle.Core.dll">
+      <publishTime>07/07/2017 22:30:56</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/28/2018 11:00:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/28/2018 11:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/28/2018 11:02:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/28/2018 10:59:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>11/02/2014 13:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/28/2018 11:00:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>11/28/2018 11:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>11/28/2018 11:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>11/28/2018 11:04:24</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>08/02/2013 14:42:28</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 11:57:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>08/19/2024 08:53:58</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.js">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.js">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.map">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.js">
+      <publishTime>01/08/2024 11:55:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.js">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.map">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Views/QA/Index.cshtml">
+      <publishTime>06/19/2024 10:57:59</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>06/19/2024 10:58:12</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/08/2024 11:55:01</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/09/2024 08:59:44</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
